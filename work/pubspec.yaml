@@ -70,6 +70,14 @@ flutter:
       - lib/icons/phone-call.png
       - lib/icons/gift.png
       - lib/icons/money.png
+      - lib/icons/badge.png 
+      - lib/icons/billing.png 
+      - lib/icons/communication.png
+      - lib/icons/rupee.png
+      - lib/icons/add.png 
+      - lib/icons/mobile-data.png 
+      - lib/icons/prepaid.png
+      - lib/icons/sim-card.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

@@ -238,7 +238,7 @@ class _NewUiState extends State<NewUi> {
                     style: TextStyle(
                         color: Colors.grey[800], fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 8),
+                 Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -259,13 +259,12 @@ class _NewUiState extends State<NewUi> {
                                 )),
                             Text(
                               "Wi-Fi",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)
                             )
                           ],
                         ),
                       ),
-                      SizedBox(width: 30),
+                    Spacer(),
                       Container(
                         padding: EdgeInsets.only(top: 15),
                         child: Column(
@@ -282,24 +281,22 @@ class _NewUiState extends State<NewUi> {
                             ),
                             Text(
                               "upgrade to",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)
                             ),
                             Text(
                               " postpaid",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                             style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)
                             )
                           ],
                         ),
                       ),
-                      SizedBox(width: 30),
+                      Spacer(),
                       Container(
                         child: Column(
                           children: [
                             Container(
                               padding: EdgeInsets.all(15),
-                              width: 60,
+                              width:60,
                               height: 60,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
@@ -309,13 +306,12 @@ class _NewUiState extends State<NewUi> {
                             ),
                             Text(
                               "DTH",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                             style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)
                             )
                           ],
                         ),
                       ),
-                      SizedBox(width: 30),
+                     Spacer(),
                       Container(
                         child: Column(
                           children: [
@@ -331,8 +327,7 @@ class _NewUiState extends State<NewUi> {
                             ),
                             Text(
                               "new prepaid SIM",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)
                             )
                           ],
                         ),
@@ -362,10 +357,10 @@ class _NewUiState extends State<NewUi> {
                             fit: BoxFit.contain,
                           ),
                         ),
-                        Text("call manager"),
+                        Text("call manager",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
                       ],
                     )),
-                SizedBox(width: 30),
+                Spacer(),
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.all(10),
@@ -385,12 +380,12 @@ class _NewUiState extends State<NewUi> {
                             "./lib/icons/gift.png",
                             fit: BoxFit.cover,
                           )),
-                      Text("rewards &"),
-                      Text("coupons")
+                      Text("rewards &",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                      Text("coupons",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
                     ],
                   ),
                 ),
-                SizedBox(width: 30),
+                Spacer(),
                 Container(
                   padding: EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width*.24,
@@ -408,8 +403,8 @@ class _NewUiState extends State<NewUi> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      Text("refer & get"),
-                      Text("₹ 300")
+                      Text("refer & get",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                      Text("₹ 300",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
                     ],
                   ),
                 ),
@@ -421,7 +416,7 @@ class _NewUiState extends State<NewUi> {
             Container(
                padding: EdgeInsets.all(30),
               width: double.infinity,
-              height: 300,
+              height: 320,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.white),
               child: Column(
@@ -432,53 +427,387 @@ class _NewUiState extends State<NewUi> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(width: 15),
-                    Container(
-                      margin: EdgeInsets.only(top: 15),
-                      width: 65,
-                      height: 65,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: const Color.fromARGB(255, 228, 231, 247)
-                      ),
-                      child: Image.asset("")
+                  
+                          Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(top: 15),
+                                width: 65,
+                                height: 65,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color: const Color.fromARGB(255, 228, 231, 247)
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    child: Image.asset("./lib/icons/rupee.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("recharge",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),)
+                            ],
+                          ),
+                     
+                     Spacer(),
+                    Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 15),
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: const Color.fromARGB(255, 228, 231, 247)
+                          ),
+                           child: Center(
+                             child: Container(
+                              width: 30,
+                              height: 30,
+                               child: Image.asset("./lib/icons/billing.png",
+                               ),
+                             ),
+                           )
+                        ),
+                        Text("pay bills",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),)
+                      ],
                     ),
-                     SizedBox(width: 35),
-                    Container(
-                      margin: EdgeInsets.only(top: 15),
-                      width: 65,
-                      height: 65,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: const Color.fromARGB(255, 228, 231, 247)
-                      ),
+                   Spacer(),
+                    Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 15),
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: const Color.fromARGB(255, 228, 231, 247)
+                          ),
+                           child: Center(
+                             child: Container(
+                                width: 30,
+                                height: 30,
+                              child: Image.asset("./lib/icons/badge.png")),
+                           )
+                        ),
+                        Text("claim OTTS's &",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                        Text("more",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                      ],
                     ),
-                    SizedBox(width: 35),
-                    Container(
-                      margin: EdgeInsets.only(top: 15),
-                      width: 65,
-                      height: 65,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: const Color.fromARGB(255, 228, 231, 247)
-                      ),
-                    ),
-                     SizedBox(width: 35),
-                    Container(
-                      margin: EdgeInsets.only(top: 15),
-                      width: 65,
-                      height: 65,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: const Color.fromARGB(255, 228, 231, 247)
-                      ),
+                     Spacer(),
+                    Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 15),
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: const Color.fromARGB(255, 228, 231, 247)
+                          ),
+                           child: Center(
+                             child: Container(
+                                width: 40,
+                                height: 40,
+                                 child: Image.asset("./lib/icons/communication.png")),
+                            )
+                          ),
+                          Text("international",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                          Text("roaming",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                      ],
                     ),
                     ],
                   ),
-                  
-                  
-                  
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 15),
+                              width: 65,
+                              height: 65,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 228, 231, 247)
+                              ),
+                               child: Center(
+                                 child: Container(
+                                    width: 40,
+                                    height: 40,
+                                     child: Image.asset("./lib/icons/add.png")),
+                                )
+                              ),
+                              Text("add existing",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                              Text("connection",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                          ],
+                        ),
+                          Spacer(),
+                           Column(
+                             children: [
+                               Container(
+                                 margin: EdgeInsets.only(top: 15),
+                                  width: 65,
+                                  height: 65,
+                                  decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 228, 231, 247)
+                             ),
+                               child: Center(
+                                 child: Container(
+                                    width: 40,
+                                    height: 40,
+                                     child: Image.asset("./lib/icons/prepaid.png")),
+                                )
+                             ),
+                             Text("upgrade to",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                             Text("postpaid",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                            ],
+                          ),
+                          Spacer(),
+                           Column(
+                             children: [
+                               Container(
+                                margin: EdgeInsets.only(top: 15),
+                                 width: 65,
+                                  height: 65,
+                                  decoration: BoxDecoration(
+                                                         
+                                borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 228, 231, 247)
+                             ),
+                               child: Center(
+                                 child: Container(
+                                    width: 40,
+                                    height: 40,
+                                     child: Image.asset("./lib/icons/mobile-data.png")),
+                                )
+                              ),
+                              Text("top up",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                              Text("data",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                             ],
+                           ),
+                          Spacer(),
+                           Column(
+                             children: [
+                               Container(
+                               margin: EdgeInsets.only(top: 15),
+                                 width: 65,
+                                 height: 65,
+                                  decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 228, 231, 247)
+                                 ),
+                               child: Center(
+                                 child: Container(
+                                    width: 40,
+                                    height: 40,
+                                     child: Image.asset("./lib/icons/sim-card.png")),
+                                )
+                             ),
+                             Text("ugrade to",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                             Text("SIM",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                             ],
+                           ),
+                      ],
+                    ),
+                ],
+              ),
+            ),
 
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+               padding: EdgeInsets.all(30),
+              width: double.infinity,
+              height: 320,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20), color: Colors.white),
+              child: Column(
+                 mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                   Text("SHORTCUTS"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                  
+                          Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(top: 15),
+                                width: 65,
+                                height: 65,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color: const Color.fromARGB(255, 228, 231, 247)
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    child: Image.asset("./lib/icons/rupee.png"),
+                                  ),
+                                ),
+                              ),
+                              Text("recharge",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),)
+                            ],
+                          ),
+                     
+                     Spacer(),
+                    Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 15),
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: const Color.fromARGB(255, 228, 231, 247)
+                          ),
+                           child: Center(
+                             child: Container(
+                              width: 30,
+                              height: 30,
+                               child: Image.asset("./lib/icons/billing.png",
+                               ),
+                             ),
+                           )
+                        ),
+                        Text("pay bills",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),)
+                      ],
+                    ),
+                   Spacer(),
+                    Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 15),
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: const Color.fromARGB(255, 228, 231, 247)
+                          ),
+                           child: Center(
+                             child: Container(
+                                width: 30,
+                                height: 30,
+                              child: Image.asset("./lib/icons/badge.png")),
+                           )
+                        ),
+                        Text("claim OTTS's &",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                        Text("more",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                     Spacer(),
+                    Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 15),
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: const Color.fromARGB(255, 228, 231, 247)
+                          ),
+                           child: Center(
+                             child: Container(
+                                width: 40,
+                                height: 40,
+                                 child: Image.asset("./lib/icons/communication.png")),
+                            )
+                          ),
+                          Text("international",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                          Text("roaming",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                    ],
+                  ),
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 15),
+                              width: 65,
+                              height: 65,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 228, 231, 247)
+                              ),
+                               child: Center(
+                                 child: Container(
+                                    width: 40,
+                                    height: 40,
+                                     child: Image.asset("./lib/icons/add.png")),
+                                )
+                              ),
+                              Text("add existing",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                              Text("connection",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                          ],
+                        ),
+                          Spacer(),
+                           Column(
+                             children: [
+                               Container(
+                                 margin: EdgeInsets.only(top: 15),
+                                  width: 65,
+                                  height: 65,
+                                  decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 228, 231, 247)
+                             ),
+                               child: Center(
+                                 child: Container(
+                                    width: 40,
+                                    height: 40,
+                                     child: Image.asset("./lib/icons/prepaid.png")),
+                                )
+                             ),
+                             Text("upgrade to",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                             Text("postpaid",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                            ],
+                          ),
+                          Spacer(),
+                           Column(
+                             children: [
+                               Container(
+                                margin: EdgeInsets.only(top: 15),
+                                 width: 65,
+                                  height: 65,
+                                  decoration: BoxDecoration(
+                                                         
+                                borderRadius: BorderRadius.circular(100),
+                                color: const Color.fromARGB(255, 228, 231, 247)
+                             ),
+                               child: Center(
+                                 child: Container(
+                                    width: 40,
+                                    height: 40,
+                                     child: Image.asset("./lib/icons/mobile-data.png")),
+                                )
+                              ),
+                              Text("top up",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
+                              Text("data",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                             ],
+                           ),
+                          Spacer(),
+                           Column(
+                             children: [
+                               Container(
+                               margin: EdgeInsets.only(top: 15),
+                                 width: 65,
+                                 height: 65,
+                                  decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                 ),
+                               )
+                           
+                             ],
+                           ),
+                      ],
+                    ),
                 ],
               ),
             )
