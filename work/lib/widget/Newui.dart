@@ -90,7 +90,7 @@ class _NewUiState extends State<NewUi> {
               children: [
                 Container(
                   margin: EdgeInsets.only(top: 20),
-                  width: 200,
+                  width: MediaQuery.of(context).size.width*.4,
                   height: 250,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -149,7 +149,7 @@ class _NewUiState extends State<NewUi> {
                 Container(
                   padding: EdgeInsets.all(15),
                   margin: EdgeInsets.only(top: 20),
-                  width: 200,
+                  width: MediaQuery.of(context).size.width*.4,
                   height: 250,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -198,7 +198,7 @@ class _NewUiState extends State<NewUi> {
             SizedBox(height: 20),
             Container(
               // padding: EdgeInsets.all(10),
-              width: double.infinity,
+              width: MediaQuery.of(context).size.width,
               height: 45,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15), color: Colors.white),
@@ -226,7 +226,7 @@ class _NewUiState extends State<NewUi> {
             SizedBox(height: 20),
             Container(
               padding: EdgeInsets.all(15),
-              width: double.infinity,
+              width: MediaQuery.of(context).size.width,
               height: 185,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15), color: Colors.white),
@@ -347,7 +347,7 @@ class _NewUiState extends State<NewUi> {
               children: [
                 Container(
                     padding: EdgeInsets.all(10),
-                    width: 130,
+                    width: MediaQuery.of(context).size.width*.28,
                     height: 100,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -355,8 +355,8 @@ class _NewUiState extends State<NewUi> {
                     child: Column(
                       children: [
                         Container(
-                          width: 50,
-                          height: 50,
+                          height: 50, 
+                          width: 130,
                           child: Image.asset(
                             "./lib/icons/phone-call.png",
                             fit: BoxFit.contain,
@@ -369,7 +369,7 @@ class _NewUiState extends State<NewUi> {
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.all(10),
-                  width: 130,
+                 width: MediaQuery.of(context).size.width*.28,
                   height: 100,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
@@ -393,7 +393,7 @@ class _NewUiState extends State<NewUi> {
                 SizedBox(width: 30),
                 Container(
                   padding: EdgeInsets.all(10),
-                  width: 130,
+                  width: MediaQuery.of(context).size.width*.24,
                   height: 100,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
@@ -473,10 +473,12 @@ class _NewUiState extends State<NewUi> {
                         color: const Color.fromARGB(255, 228, 231, 247)
                       ),
                     ),
-                   
-
                     ],
-                  )
+                  ),
+                  
+                  
+                  
+
                 ],
               ),
             )
