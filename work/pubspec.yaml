@@ -78,6 +78,9 @@ flutter:
       - lib/icons/mobile-data.png 
       - lib/icons/prepaid.png
       - lib/icons/sim-card.png
+      - lib/icons/bank.png 
+      - lib/icons/black.png
+      - lib/icons/cctv.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
