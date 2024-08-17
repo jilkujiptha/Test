@@ -847,16 +847,172 @@ class _NewUiState extends State<NewUi> {
                            ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          
-                        )
-                      ],
-                    )
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 20),
+            Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(15),
+                          width: MediaQuery.of(context).size.width*.4,
+                          height: 250,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                           SizedBox(width: 100),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.blue,
+                                  ),
+                                ],
+                              ),
+                               Container(
+                        width: 80,
+                        height: 80,
+                        child: Image.asset(
+                          "./image/phone.jpg",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Text(
+                        "Superhit offer",
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        "Get Airtel Digital TV at ",
+                        style: TextStyle(
+                            color: const Color.fromARGB(
+                              255,
+                              126,
+                              124,
+                              124,
+                            ),
+                            fontSize: 15),
+                      ),
+                      Row(
+                        children: [
+                          Text("₹900   ",style: TextStyle(color:const Color.fromARGB(
+                          255,
+                          126,
+                          124,
+                          124,
+                        ),fontSize: 15,),),
+                        
+                           Text("₹2,000",style: TextStyle(color:const Color.fromARGB(
+                          255,
+                          126,
+                          124,
+                          124,
+                        ),
+                        fontSize: 15,decoration: TextDecoration.lineThrough),)
+                        ],
+                      )
+                            ],
+                          ),
+                        ),
+                        Spacer(),
+                         Container(
+                          padding: EdgeInsets.all(15),
+                          width: MediaQuery.of(context).size.width*.4,
+                          height: 250,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.blue,
+                                  ),
+                                ],
+                              ),
+                               Container(
+                        width: 80,
+                        height: 80,
+                        child: Image.asset(
+                          "./image/airtel1.webp",
+                        ),
+                      ),
+                      Text(
+                        "Get a new Prepaid SIM",
+                        style: TextStyle(fontSize: 23,fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        "Enjoy doorstep delivery & 17+ OTTs",
+                        style: TextStyle(
+                            color: const Color.fromARGB(
+                              255,
+                              126,
+                              124,
+                              124,
+                            ),
+                            fontSize: 15),
+                      ),
+                            ],
+                          ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20,),
+                    Container(
+                    padding: EdgeInsets.all(15),
+                    width: MediaQuery.of(context).size.width*.4,
+                    height: 350,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("recommended for you",
+                        style: TextStyle(fontSize: 20,
+                        fontWeight: FontWeight.bold),),
+                        Text("explore more from airtel",style: TextStyle(color: Colors.grey),),
+                        SizedBox(height: 10,),
+                        Row(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width*.4,
+                              height: 250,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: const Color.fromARGB(255, 247, 183, 131)
+                              ),
+                            ),
+                            Spacer(),
+                            Container(
+                               width: MediaQuery.of(context).size.width*.4,
+                              height: 250,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: const Color.fromARGB(255, 247, 183, 131)
+                              ),
+                            ),
+                          
+                                          
+                          ],
+                        )
+                      ]
+                    ),
+                    ),
+                    SizedBox(height: 20,)
           ],
         ),
       ),
