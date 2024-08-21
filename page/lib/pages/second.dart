@@ -3,12 +3,17 @@ import 'package:page/pages/third.dart';
 
 class Second extends StatelessWidget {
   const Second({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
+     bool _isRunning=false;
+      void SignUp(){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>Third()));
+  }
+
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("LOGIN")),
+        title: Center(child: Text("LOGIN",style: TextStyle(color: Colors.blue))),
          backgroundColor: Colors.white,
       ),
       body: Container(
@@ -19,7 +24,7 @@ class Second extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              height: MediaQuery.of(context).size.height*.8,
+              height: MediaQuery.of(context).size.height*.6,
               child: Stack(
                 children: [
                   Image.asset("./images/3071357.jpg"),
@@ -35,13 +40,14 @@ class Second extends StatelessWidget {
                                alignment: Alignment.center,
                                decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: const Color.fromRGBO(69, 136, 212, 1)
+                                color: const Color.fromARGB(255, 109, 162, 223)
                                ),
                                 child: Row(
                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                   Expanded(
                           child: TextField(
+                            keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             hintText: "  Enter your E-mail ...",
                             hintStyle: TextStyle(color: Colors.blue[200]),
@@ -66,7 +72,7 @@ class Second extends StatelessWidget {
                                alignment: Alignment.center,
                                decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: const Color.fromRGBO(69, 136, 212, 1)
+                                color:const Color.fromARGB(255, 109, 162, 223)
                                ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -84,10 +90,11 @@ class Second extends StatelessWidget {
                               color: Colors.blue[200],
                               size: 20,
                             ),
-                            suffixIcon: Icon(
+                            suffixIcon:
+                            IconButton(onPressed: (){}, icon: Icon(
                               Icons.remove_red_eye,
                               color: Colors.blue[200],
-                            )
+                            ))
                           ),
                           ),
                 )
@@ -98,8 +105,10 @@ class Second extends StatelessWidget {
                     height: 10,
                   ),
                   ElevatedButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Third()));
-                  },
+                  //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Third()
+                  //   )
+                  // );
+                },
                    style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 15, 137, 236),
               foregroundColor: Colors.white,
@@ -114,14 +123,26 @@ class Second extends StatelessWidget {
               ]
             ),
                   ),
-                  SizedBox(height: 30,),
-                  Text("Don't have an Account ? Sign Up ",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),)
-                        ],
+                  ],
                       ),
                     )
                 ],
               ),
             ),
+            SizedBox(height: 30,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Dont't have an Account ? ",style: TextStyle(color: Colors.blue,)),
+            GestureDetector(
+              onTap: SignUp,
+              child: Container(
+                child: Text("Sign Up",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),),
+              ),
+            )
+              ],
+            ),
+          
           
         ],
         ),
