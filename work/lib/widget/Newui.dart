@@ -986,28 +986,77 @@ class _NewUiState extends State<NewUi> {
                         fontWeight: FontWeight.bold),),
                         Text("explore more from airtel",style: TextStyle(color: Colors.grey),),
                         SizedBox(height: 10,),
-                        Row(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width*.4,
-                              height: 250,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: const Color.fromARGB(255, 247, 183, 131)
+                        Expanded(
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width*.4,
+                                height: 250,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color.fromARGB(255, 120, 238, 238)
+                                ),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(right: 20,left: 20,top: 30),
+                                          width: 50,
+                                          height: 50,
+                                          color: Colors.white,
+                                          child: Image.asset("./image/prime.png",
+                                          ),
+                                        ),
+                                         Container(
+                                          padding: EdgeInsets.only(right: 20,left: 20,top: 30),
+                                          width: 30,
+                                          height: 60,
+                                          color: Colors.white,
+                                          child: Image.asset("./image/airtel-thanks-app-261428401.webp",
+                                          fit: BoxFit.fitHeight,
+                                          ),
+                                        ),
+                                         Container(
+                                          margin: EdgeInsets.only(right: 20,left: 20,top: 30),
+                                          width: 30,
+                                          height: 60,
+                                          color: Colors.white,
+                                          child: Image.asset("./image/Hotstar.webp",
+                                          fit: BoxFit.fitHeight,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                               
                               ),
-                            ),
-                            Spacer(),
-                            Container(
-                               width: MediaQuery.of(context).size.width*.4,
-                              height: 250,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: const Color.fromARGB(255, 247, 183, 131)
+                              SizedBox(width: 20,),
+                              Container(
+                                 width: MediaQuery.of(context).size.width*.4,
+                                height: 250,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color.fromARGB(255, 247, 183, 131)
+                                ),
                               ),
-                            ),
-                          
-                                          
-                          ],
+                               SizedBox(width: 20,),
+                              Container(
+                                 width: MediaQuery.of(context).size.width*.4,
+                                height: 250,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color.fromARGB(255, 238, 188, 147)
+                                ),
+                              ),
+                            
+                            
+                                            
+                            ],
+                          ),
                         )
                       ]
                     ),

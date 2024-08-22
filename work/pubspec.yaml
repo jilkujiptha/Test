@@ -81,6 +81,9 @@ flutter:
       - lib/icons/bank.png 
       - lib/icons/black.png
       - lib/icons/cctv.png
+      - image/prime.png
+      - image/airtel-thanks-app-261428401.webp
+      - image/Hotstar.webp
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
