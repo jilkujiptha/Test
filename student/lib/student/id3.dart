@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Student3 extends StatefulWidget {
   const Student3({super.key});
@@ -14,6 +15,7 @@ class _Student3State extends State<Student3> {
   Widget build(BuildContext context) {
     final Map<dynamic,dynamic>mp=jsonDecode(ModalRoute.of(context)?.settings.arguments as String);
     return Scaffold(
+      backgroundColor: Colors.blue,
       appBar: AppBar(title: Center(child: Text("STUDENT'S DETAILS",style: TextStyle(color: Colors.blue),)),),
       body: Container(
         child: Column(
@@ -21,9 +23,9 @@ class _Student3State extends State<Student3> {
             Text(mp["First Name"]),
              Text(mp["Last Name"]),
               Text(mp["Roll Number"]),
-               Text(mp["Mark 1"]),
-                Text(mp["Mark 2"]),
-                 Text(mp["Mark 3"]),
+               Text(mp["Mark1"]),
+                Text(mp["Mark2"]),
+                 Text(mp["Mark3"]),
           ],
         ),
       ),

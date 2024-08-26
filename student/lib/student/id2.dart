@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Student2 extends StatefulWidget {
   const Student2({super.key});
@@ -9,14 +10,32 @@ class Student2 extends StatefulWidget {
   State<Student2> createState() => __Student2State();
 }
 
-class __Student2State extends State<Student2> {
+class __Student2State extends State<Student2> { 
   TextEditingController c1=TextEditingController();
    TextEditingController c2=TextEditingController();
     TextEditingController c3=TextEditingController();
     TextEditingController c4=TextEditingController();
      TextEditingController c5=TextEditingController();
       TextEditingController c6=TextEditingController();
+
+     List<Map<dynamic,dynamic>> student=[];
      final Map<dynamic,dynamic>data={};
+
+     void getId()async{
+      final pref=await SharedPreferences.getInstance();
+      final res=pref.getString("id");
+      setState(() {
+        student=jsonDecode(res!);
+        });
+        print(student.length);
+     }
+     void add()async{
+      final pref=await SharedPreferences.getInstance();
+      final res=pref.getString("id");
+      if(res !=null){
+
+      }
+     }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,7 +139,7 @@ class __Student2State extends State<Student2> {
                    ),
                  ),
                ),
-                Text("MARK 1",style: TextStyle(color: Colors.blue),),
+                Text("MATHS",style: TextStyle(color: Colors.blue),),
                  Container(
                  padding: EdgeInsets.only(top: 10,bottom: 10),
                  width: 300,
@@ -128,7 +147,7 @@ class __Student2State extends State<Student2> {
                    child: TextField(
                     controller: c4,
                       decoration: InputDecoration(
-                                   hintText: "  Mark 1",
+                                   hintText: "  Mark",
                                    hintStyle: TextStyle(color: Colors.blue[200]),
                                    enabled: true,
                                    border: InputBorder.none,
@@ -146,7 +165,7 @@ class __Student2State extends State<Student2> {
                    ),
                  ),
                ),
-                Text("MARK 2",style: TextStyle(color: Colors.blue),),
+                Text("ENGLISH",style: TextStyle(color: Colors.blue),),
                   Container(
                 padding: EdgeInsets.only(top: 10,bottom: 10),
                  width: 300,
@@ -154,7 +173,7 @@ class __Student2State extends State<Student2> {
                    child: TextField(
                     controller: c5,
                       decoration: InputDecoration(
-                                   hintText: "  Mark 2",
+                                   hintText: "  Mark",
                                    hintStyle: TextStyle(color: Colors.blue[200]),
                                    enabled: true,
                                    border: InputBorder.none,
@@ -172,7 +191,7 @@ class __Student2State extends State<Student2> {
                    ),
                  ),
                ),
-                Text("MARK 3",style: TextStyle(color: Colors.blue),),
+                Text("SCIENCE",style: TextStyle(color: Colors.blue),),
                  Container(
                  padding: EdgeInsets.only(top: 10,bottom: 10),
                  width: 300,
@@ -180,7 +199,7 @@ class __Student2State extends State<Student2> {
                    child: TextField(
                     controller: c6,
                       decoration: InputDecoration(
-                                   hintText: "  Mark 3",
+                                   hintText: "  Mark",
                                    hintStyle: TextStyle(color: Colors.blue[200]),
                                    enabled: true,
                                    border: InputBorder.none,
@@ -199,7 +218,8 @@ class __Student2State extends State<Student2> {
                  ),
                ),
                SizedBox(height: 10,),
-               ElevatedButton(onPressed: (){
+               ElevatedButton(
+                onPressed: (){
                 setState(() {
                   data["First Name"]=c1.text;
                    data["Last Name"]=c2.text;
@@ -207,6 +227,7 @@ class __Student2State extends State<Student2> {
                      data["Mark 1"]=c4.text;
                       data["Mark 2"]=c5.text;
                        data["Mark 3"]=c6.text;
+                        // student.add(data);
                 });
                 print(data);
                 Navigator.pushNamed(context, "/id3",arguments: jsonEncode(data));
@@ -222,9 +243,16 @@ class __Student2State extends State<Student2> {
                ),
              ),
            ),
+          //  ListView.builder(
+          //   itemCount: student.length,
+          //   itemBuilder: (context,index){
+          //     return ListTile(
+
+          //     );
+          //  })
         ],
       ),
-    )
+    ),
   );
 }
 }
