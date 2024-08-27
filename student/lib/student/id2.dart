@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:student/student/dgf';
 
 class Student2 extends StatefulWidget {
   const Student2({super.key});
@@ -16,25 +17,32 @@ class __Student2State extends State<Student2> {
     TextEditingController c3=TextEditingController();
     TextEditingController c4=TextEditingController();
      TextEditingController c5=TextEditingController();
-      TextEditingController c6=TextEditingController();
 
-     List<Map<dynamic,dynamic>> student=[];
-     final Map<dynamic,dynamic>data={};
+     List<dynamic> ls=[];
+     Map<dynamic,dynamic>data={};
 
-     void getId()async{
-      final pref=await SharedPreferences.getInstance();
-      final res=pref.getString("id");
-      setState(() {
-        student=jsonDecode(res!);
-        });
-        print(student.length);
-     }
      void add()async{
       final pref=await SharedPreferences.getInstance();
       final res=pref.getString("id");
-      if(res !=null){
-
-      }
+      try{
+        ls =jsonDecode(res!);
+        data ["Name"]=c1.text;
+        data ["Roll Number"]=c2.text;
+        data ["Mark 1"]=c3.text;
+        data ["Mark 2"]=c4.text;
+        data ["Mark 3"]=c5.text;
+        ls.add(data);
+        pref.setString("id", jsonEncode(ls));
+      }catch(error){
+        data={"Name":c1.text,
+              "Roll Number":c2.text,
+              "Mark 1":c3.text,
+              "Mark 2":c4.text,
+              "Mark 3":c5.text,
+               };
+ls.add(data);
+pref.setString("id", jsonEncode(ls));
+      };
      }
   @override
   Widget build(BuildContext context) {
@@ -60,7 +68,7 @@ class __Student2State extends State<Student2> {
               width: MediaQuery.of(context).size.width*.5,
                child: ListView(
                  children: [
-                  Text("FIRST NAME",style: TextStyle(color: Colors.blue),),
+                  Text("NAME",style: TextStyle(color: Colors.blue),),
                    Container(
                    padding: EdgeInsets.only(top: 10,bottom: 10),
                      width: 300,
@@ -86,39 +94,13 @@ class __Student2State extends State<Student2> {
                        ),
                      ),
                    ),
-                    Text("LAST NAME",style: TextStyle(color: Colors.blue),),
-                    Container(
-                 padding: EdgeInsets.only(top: 10,bottom: 10),
-                 width: 300,
-                 child: Expanded(
-                   child: TextField(
-                    controller: c2,
-                      decoration: InputDecoration(
-                                   hintText: "  Last Name",
-                                   hintStyle: TextStyle(color: Colors.blue[200]),
-                                   enabled: true,
-                                   border: InputBorder.none,
-                                   enabledBorder: OutlineInputBorder(borderSide: BorderSide(
-                                     color: Colors.blue,
-                                     width: 2
-                                   )
-                                   ),
-                                   focusedBorder: OutlineInputBorder(
-                                     borderSide: BorderSide(
-                                       color: Colors.blue
-                                     )
-                                   )
-                                 ),
-                   ),
-                 ),
-               ),
                 Text("ROLL NUMBER",style: TextStyle(color: Colors.blue),),
                  Container(
                 padding: EdgeInsets.only(top: 10,bottom: 10),
                  width: 300,
                  child: Expanded(
                    child: TextField(
-                    controller: c3,
+                    controller: c2,
                     keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                                    hintText: "  Roll Number ",
@@ -145,7 +127,7 @@ class __Student2State extends State<Student2> {
                  width: 300,
                  child: Expanded(
                    child: TextField(
-                    controller: c4,
+                    controller: c3,
                       decoration: InputDecoration(
                                    hintText: "  Mark",
                                    hintStyle: TextStyle(color: Colors.blue[200]),
@@ -171,7 +153,7 @@ class __Student2State extends State<Student2> {
                  width: 300,
                  child: Expanded(
                    child: TextField(
-                    controller: c5,
+                    controller: c4,
                       decoration: InputDecoration(
                                    hintText: "  Mark",
                                    hintStyle: TextStyle(color: Colors.blue[200]),
@@ -197,7 +179,7 @@ class __Student2State extends State<Student2> {
                  width: 300,
                  child: Expanded(
                    child: TextField(
-                    controller: c6,
+                    controller: c5,
                       decoration: InputDecoration(
                                    hintText: "  Mark",
                                    hintStyle: TextStyle(color: Colors.blue[200]),
@@ -220,17 +202,17 @@ class __Student2State extends State<Student2> {
                SizedBox(height: 10,),
                ElevatedButton(
                 onPressed: (){
-                setState(() {
-                  data["First Name"]=c1.text;
-                   data["Last Name"]=c2.text;
-                    data["Roll Number"]=c3.text;
-                     data["Mark 1"]=c4.text;
-                      data["Mark 2"]=c5.text;
-                       data["Mark 3"]=c6.text;
-                        // student.add(data);
-                });
-                print(data);
-                Navigator.pushNamed(context, "/id3",arguments: jsonEncode(data));
+                  add();
+                // setState(() {
+                //   data["First Name"]=c1.text;
+                //     data["Roll Number"]=c2.text;
+                //      data["Mark 1"]=c3.text;
+                //       data["Mark 2"]=c4.text;
+                //       data["Mark 3"]=c5.text;
+                //         student.add(data);
+                // });
+                // print(data);
+                Navigator.pushNamed(context, "/id1",arguments: jsonEncode(data));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

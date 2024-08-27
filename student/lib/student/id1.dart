@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,7 +10,24 @@ class Student1 extends StatefulWidget {
   State<Student1> createState() => _Student1State();
 }
 
+
 class _Student1State extends State<Student1> {
+List<dynamic>list=[];
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    contact();
+  }
+void contact()async{
+final pref=await SharedPreferences.getInstance();
+final res=pref.getString("id");
+setState(() {
+  list=jsonDecode(res!);
+});
+print(list);
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,15 +38,14 @@ class _Student1State extends State<Student1> {
         ),
       body: Container(
          width: MediaQuery.of(context).size.width,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-         crossAxisAlignment: CrossAxisAlignment.center,
-         children: [
-           Container(
-             height: MediaQuery.of(context).size.height*.6,
-           ),
-          
-           ]
+         height: MediaQuery.of(context).size.height,
+        child: Expanded(
+          child: ListView.builder(
+            itemCount: list.length,
+            itemBuilder: (
+            context,index){
+              return Center(child: Text(list[index]["Name"]));
+          }),
         )
       ),
       floatingActionButton: TextButton(onPressed: (){
@@ -41,8 +59,7 @@ class _Student1State extends State<Student1> {
         backgroundColor: Colors.blue,
         padding: EdgeInsets.all(20),
         shape: CircleBorder()
-
-      ),
+         ),
       ),
     );
   }

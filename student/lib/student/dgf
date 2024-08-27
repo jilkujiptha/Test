@@ -1,0 +1,17 @@
+// try{
+//         student =jsonDecode(res!);
+//          data ["name"]=c1.text;
+//          data ["roll number"]=c2.text;
+//          data ["Mark 1"]=c3.text;
+//          data ["Mark 2"]=c4.text;
+//          data ["Mark 3"]=c5.text;
+//          student.add(data);
+//          pref.setString("Id", jsonEncode(student));
+
+//        }catch(error){
+//          data={"Name":c1.text,
+//          "roll number":c2.text,
+//          "Mark 1":c3.text,
+//          "Mark 2":c4.text,
+//         "Mark 3":c5.text,};
+//       }

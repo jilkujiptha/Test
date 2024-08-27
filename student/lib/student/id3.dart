@@ -20,12 +20,11 @@ class _Student3State extends State<Student3> {
       body: Container(
         child: Column(
           children: [
-            Text(mp["First Name"]),
-             Text(mp["Last Name"]),
+            Text(mp["Name"]),
               Text(mp["Roll Number"]),
-               Text(mp["Mark1"]),
-                Text(mp["Mark2"]),
-                 Text(mp["Mark3"]),
+               Text(mp["Mark 1"]),
+                Text(mp["Mark 2"]),
+                 Text(mp["Mark 3"]),
           ],
         ),
       ),
