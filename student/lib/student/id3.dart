@@ -13,18 +13,112 @@ class Student3 extends StatefulWidget {
 class _Student3State extends State<Student3> {
   @override
   Widget build(BuildContext context) {
-    final Map<dynamic,dynamic>mp=jsonDecode(ModalRoute.of(context)?.settings.arguments as String);
+    final Map<dynamic, dynamic> mp =
+        jsonDecode(ModalRoute.of(context)?.settings.arguments as String);
     return Scaffold(
-      backgroundColor: Colors.blue,
-      appBar: AppBar(title: Center(child: Text("STUDENT'S DETAILS",style: TextStyle(color: Colors.blue),)),),
+      appBar: AppBar(
+        title: Center(
+            child: Text(
+          "STUDENT'S DETAILS",
+          style: TextStyle(color: Colors.blue),
+        )),
+      ),
       body: Container(
+        padding: EdgeInsets.all(20),
+        margin: EdgeInsets.all(10),
+        width: MediaQuery.of(context).size.width,
+        height: 210,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), color: Colors.blue),
         child: Column(
           children: [
-            Text(mp["Name"]),
-              Text(mp["Roll Number"]),
-               Text(mp["Mark 1"]),
-                Text(mp["Mark 2"]),
-                 Text(mp["Mark 3"]),
+            Row(
+              children: [
+                Text(
+                  "NAME :",
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  mp["Name"],
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Text(
+                  "ROLL NUMBER :",
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  mp["Roll Number"],
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Text(
+                  "CLASS:",
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  mp["Class"],
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Text(
+                  "MATHS :",
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  mp["Mark 1"],
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Text(
+                  "ENGLISH :",
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  mp["Mark 2"],
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Text(
+                  "SCIENCE :",
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  mp["Mark 3"],
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
           ],
         ),
       ),
