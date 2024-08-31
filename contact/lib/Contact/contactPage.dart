@@ -31,8 +31,6 @@ class _ContactState extends State<Contact> {
   }
 
   void gallery() async {
-    final pref = await SharedPreferences.getInstance();
-    final res = pref.getString("phone");
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
       if (pickedFile != null) {
@@ -43,40 +41,37 @@ class _ContactState extends State<Contact> {
     });
   }
 
-    void saveData() async {
-      final pref = await SharedPreferences.getInstance();
-      final res = pref.getString("phone");
-      final bytes = await _image!.readAsBytes();
-      final base64img = base64Encode(bytes);
-        try{
-          List<dynamic> contact = jsonDecode(res!);
-        contact.add({
+  void saveData() async {
+    final pref = await SharedPreferences.getInstance();
+    final res = pref.getString("phone");
+    final bytes = await _image!.readAsBytes();
+    final base64img = base64Encode(bytes);
+    try {
+      List<dynamic> contact = jsonDecode(res!);
+      contact.add({
+        "fname": fname.text,
+        "lname": lname.text,
+        "email": email.text,
+        "phone": phone.text,
+        "photo": base64img
+      });
+      pref.setString("phone", jsonEncode(contact));
+      print(contact);
+    } catch (error) {
+      List<dynamic> contact = [
+        {
           "fname": fname.text,
           "lname": lname.text,
           "email": email.text,
           "phone": phone.text,
           "photo": base64img
-        });
-        pref.setString("phone", jsonEncode(contact));
-        }catch(error){
-          List<dynamic> contact = [
-          {
-            "fname": fname.text,
-            "lname": lname.text,
-            "email": email.text,
-            "phone": phone.text,
-            "photo": base64img
-          }
-        ];
-        pref.setString("phone", jsonEncode(contact));
         }
-        Navigator.pushNamed(context, "/firstPage");
-        
-      }   
-      
-    
-    
-  
+      ];
+      pref.setString("phone", jsonEncode(contact));
+      print(contact);
+    }
+    // Navigator.pushNamed(context, "/firstPage");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,6 +128,7 @@ class _ContactState extends State<Contact> {
             SizedBox(height: 100),
             Container(
               child: TextField(
+                controller: fname,
                 decoration: InputDecoration(
                     labelText: "FirstName",
                     labelStyle: TextStyle(color: Colors.black),
@@ -148,6 +144,7 @@ class _ContactState extends State<Contact> {
             SizedBox(height: 30),
             Container(
               child: TextField(
+                controller: lname,
                 decoration: InputDecoration(
                     labelText: "SurName",
                     labelStyle: TextStyle(color: Colors.black),
@@ -163,6 +160,7 @@ class _ContactState extends State<Contact> {
             SizedBox(height: 20),
             Container(
               child: TextField(
+                controller: email,
                 decoration: InputDecoration(
                     labelText: "EmailAddress",
                     labelStyle: TextStyle(color: Colors.black),
@@ -178,6 +176,7 @@ class _ContactState extends State<Contact> {
             SizedBox(height: 20),
             Container(
               child: TextField(
+                controller: phone,
                 decoration: InputDecoration(
                     labelText: "PhoneNumber",
                     labelStyle: TextStyle(color: Colors.black),
@@ -196,7 +195,7 @@ class _ContactState extends State<Contact> {
       floatingActionButton: TextButton(
         onPressed: () {
           saveData();
-          Navigator.pushNamed(context, "/firstPage");
+          Navigator.pushNamed(context, "/homePage");
         },
         child: Icon(
           Icons.add,
