@@ -31,6 +31,8 @@ class _DisplayState extends State<Display> {
       _image = base64Decode(contact![index!]["photo"]);
     });
   }
+   
+
 
   @override
   Widget build(BuildContext context) {
@@ -90,13 +92,27 @@ class _DisplayState extends State<Display> {
                         ],
                       )
                     : Text("error")),
+                    SizedBox(height: 30,),
             Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(30),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                           child:contact !=null?Text(contact![index!]["phone"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                           :Text("error"),
+                          ),
+                          Text("Mobile | India"),
+                        ],
+                      ),
+                      Spacer(),
+                      
                       Container(
                         child: Icon(
                           Icons.call,
@@ -104,6 +120,7 @@ class _DisplayState extends State<Display> {
                           size: 30,
                         ),
                       ),
+                      SizedBox(width: 40),
                       Container(
                         child: Icon(
                           Icons.message,
@@ -111,15 +128,18 @@ class _DisplayState extends State<Display> {
                           size: 30,
                         ),
                       ),
-                      Container(
-                        child: Icon(
-                          Icons.video_call,
-                          color: Colors.black,
-                          size: 30,
-                        ),
-                      ),
                     ],
                   ),
+
+                  SizedBox(height: 30,),
+                  Row(
+                    children: [
+                      Text("Video call",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                      Spacer(),
+                      Icon(Icons.video_call,
+                      size: 40,)
+                    ],
+                  )
                 ],
               ),
             )

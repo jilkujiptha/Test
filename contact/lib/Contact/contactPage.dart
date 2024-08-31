@@ -77,17 +77,17 @@ class _ContactState extends State<Contact> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.black,
         title: Center(
             child: Text(
           "ADD CONTACT",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.blue[900]),
         )),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: Colors.blueGrey,
+        color: Colors.black,
         child: ListView(
           padding: EdgeInsets.all(70),
           children: [
@@ -104,11 +104,11 @@ class _ContactState extends State<Contact> {
                         : Container(
                             width: 150,
                             height: 150,
-                            color: Colors.black,
+                            color: Colors.blue[900],
                             child: Center(
                               child: Text(
                                 "image is not available",
-                                style: TextStyle(color: Colors.blueGrey),
+                                style: TextStyle(color: Colors.white),
                               ),
                             ),
                           ))),
@@ -121,8 +121,8 @@ class _ContactState extends State<Contact> {
                 onPressed: pickImg,
                 child: Text("Add Photo"),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueGrey,
-                    foregroundColor: Colors.black),
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.blue[800]),
               ),
             ),
             SizedBox(height: 100),
@@ -132,12 +132,12 @@ class _ContactState extends State<Contact> {
                 decoration: InputDecoration(
                     labelText: "FirstName",
                     labelStyle: TextStyle(color: Colors.black),
-                    hintStyle: TextStyle(color: Colors.black),
+                    hintStyle: TextStyle(color: Colors.grey[700]),
                     enabledBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Colors.blueGrey, width: 1.5)),
+                            BorderSide(color: Colors.black, width: 1.5)),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black))),
+                        borderSide: BorderSide(color: Colors.blue))),
                 style: TextStyle(color: Colors.black),
               ),
             ),
@@ -199,7 +199,7 @@ class _ContactState extends State<Contact> {
         },
         child: Icon(
           Icons.add,
-          color: Colors.blueGrey,
+          color: Colors.white,
         ),
         style: TextButton.styleFrom(
             backgroundColor: Colors.black, padding: EdgeInsets.all(20)),

@@ -30,7 +30,7 @@ class _AddPageState extends State<AddPage> {
     });
   }
 
-  void delete(int index) async {
+ void delete(int index) async {
     final pref = await SharedPreferences.getInstance();
     final res = pref.getString("phone");
     List<dynamic> delete = jsonDecode(res!);
@@ -38,7 +38,6 @@ class _AddPageState extends State<AddPage> {
     pref.setString("phone", jsonEncode(delete));
     display();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,16 +89,12 @@ class _AddPageState extends State<AddPage> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                trailing: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        delete(index);
-                      });
-                    },
-                    child: Text(
-                      "Delete",
-                      style: TextStyle(color: Colors.black),
-                    )));
+                trailing: TextButton(onPressed: (){
+                 setState(() {
+                   delete(index);
+                 }); 
+                }, child: Text("Delete",style: TextStyle(color: Colors.black),))
+                );
           },
         ),
       ),
