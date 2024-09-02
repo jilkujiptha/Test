@@ -30,25 +30,29 @@ class _AddPageState extends State<AddPage> {
     });
   }
 
- void delete(int index) async {
-    final pref = await SharedPreferences.getInstance();
-    final res = pref.getString("phone");
-    List<dynamic> delete = jsonDecode(res!);
-    delete.removeAt(index);
-    pref.setString("phone", jsonEncode(delete));
-    display();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.white,
         title: Center(
             child: Text(
           "CONTACT",
           style: TextStyle(color: Colors.black),
         )),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/firstPage");
+              },
+              icon: Icon(
+                Icons.add,
+                color: Colors.black,
+                size: 30,
+              )),
+        ],
+        leading: Icon(Icons.menu),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -57,57 +61,41 @@ class _AddPageState extends State<AddPage> {
           itemCount: contact.length,
           itemBuilder: (context, index) {
             return ListTile(
-                onTap: () {
-                  Navigator.pushNamed(context, "/displayPage",
-                      arguments: index.toString());
-                },
-                title: Row(
-                  children: [
-                    Text(
-                      contact[index]["fname"],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      contact[index]["lname"],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-                subtitle: Text(
-                  contact[index]["phone"],
-                  style: TextStyle(color: Colors.black),
-                ),
-                leading: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image.memory(
-                    _image = base64Decode(contact[index]["photo"]),
-                    width: 40,
-                    height: 40,
-                    fit: BoxFit.cover,
+              onTap: () {
+                Navigator.pushNamed(context, "/displayPage",
+                    arguments: index.toString());
+              },
+              title: Row(
+                children: [
+                  Text(
+                    contact[index]["fname"],
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    contact[index]["lname"],
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+              subtitle: Text(
+                contact[index]["phone"],
+                style: TextStyle(color: Colors.black),
+              ),
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.memory(
+                  _image = base64Decode(contact[index]["photo"]),
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover,
                 ),
-                trailing: TextButton(onPressed: (){
-                 setState(() {
-                   delete(index);
-                 }); 
-                }, child: Text("Delete",style: TextStyle(color: Colors.black),))
-                );
+              ),
+            );
           },
         ),
-      ),
-      floatingActionButton: TextButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/firstPage");
-        },
-        child: Text(
-          "ADD",
-          style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold),
-        ),
-        style: TextButton.styleFrom(
-            backgroundColor: Colors.black, padding: EdgeInsets.all(20)),
       ),
     );
   }

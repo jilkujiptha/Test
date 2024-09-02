@@ -31,20 +31,47 @@ class _DisplayState extends State<Display> {
       _image = base64Decode(contact![index!]["photo"]);
     });
   }
-   
 
+  void delete(int index) async {
+    final pref = await SharedPreferences.getInstance();
+    final res = pref.getString("phone");
+    List<dynamic> delete = jsonDecode(res!);
+    delete.removeAt(index);
+    pref.setString("phone", jsonEncode(delete));
+    display();
+  }
+
+  // void editDelete() async {
+  //   showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return AlertDialog(
+  //           title: Text("Choose any?"),
+  //           actions: [
+  //             TextButton(
+  //                 onPressed: () {
+  //                   delete(index!);
+  //                 },
+  //                 child: Text("Delete"))
+  //           ],
+  //         );
+  //       });
+  // }
 
   @override
   Widget build(BuildContext context) {
     index = int.parse((ModalRoute.of(context)!.settings.arguments as String));
     return Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
-          title: Text(
-            "CONTACT LIST",
-            style: TextStyle(color: Colors.black),
-          ),
+          backgroundColor: Colors.white,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  // editDelete();
+                },
+                icon: Icon(Icons.more_horiz))
+          ],
         ),
         body: Center(
           child: Column(children: [
@@ -92,7 +119,9 @@ class _DisplayState extends State<Display> {
                         ],
                       )
                     : Text("error")),
-                    SizedBox(height: 30,),
+            SizedBox(
+              height: 100,
+            ),
             Container(
               padding: EdgeInsets.all(30),
               child: Column(
@@ -105,14 +134,19 @@ class _DisplayState extends State<Display> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                           child:contact !=null?Text(contact![index!]["phone"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
-                           :Text("error"),
+                            child: contact != null
+                                ? Text(
+                                    contact![index!]["phone"],
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : Text("error"),
                           ),
                           Text("Mobile | India"),
                         ],
                       ),
                       Spacer(),
-                      
                       Container(
                         child: Icon(
                           Icons.call,
@@ -130,14 +164,21 @@ class _DisplayState extends State<Display> {
                       ),
                     ],
                   ),
-
-                  SizedBox(height: 30,),
+                  SizedBox(
+                    height: 30,
+                  ),
                   Row(
                     children: [
-                      Text("Video call",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                      Text(
+                        "Video call",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
                       Spacer(),
-                      Icon(Icons.video_call,
-                      size: 40,)
+                      Icon(
+                        Icons.video_call,
+                        size: 40,
+                      )
                     ],
                   )
                 ],

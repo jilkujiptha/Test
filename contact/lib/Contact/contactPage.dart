@@ -77,7 +77,7 @@ class _ContactState extends State<Contact> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         title: Center(
             child: Text(
           "ADD CONTACT",
@@ -87,7 +87,7 @@ class _ContactState extends State<Contact> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: Colors.black,
+        color: Colors.white,
         child: ListView(
           padding: EdgeInsets.all(70),
           children: [
@@ -106,11 +106,11 @@ class _ContactState extends State<Contact> {
                             height: 150,
                             color: Colors.blue[900],
                             child: Center(
-                              child: Text(
-                                "image is not available",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
+                                child: Icon(
+                              Icons.image,
+                              size: 40,
+                              color: Colors.white,
+                            )),
                           ))),
             SizedBox(
               height: 20,
@@ -122,7 +122,7 @@ class _ContactState extends State<Contact> {
                 child: Text("Add Photo"),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    foregroundColor: Colors.blue[800]),
+                    foregroundColor: Colors.blue),
               ),
             ),
             SizedBox(height: 100),
