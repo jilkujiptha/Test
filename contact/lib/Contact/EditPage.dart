@@ -1,24 +1,50 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:image_picker/image_picker.dart';
 
-class Contact extends StatefulWidget {
-  const Contact({super.key});
+class Editpage extends StatefulWidget {
+  const Editpage({super.key});
 
   @override
-  State<Contact> createState() => _ContactState();
+  State<Editpage> createState() => _EditpageState();
 }
 
-class _ContactState extends State<Contact> {
+class _EditpageState extends State<Editpage> {
   TextEditingController fname = TextEditingController();
   TextEditingController lname = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
+  Uint8List? image;
   File? _image;
+  int? index;
+  List<dynamic>? contact;
+  String? base;
   final ImagePicker _picker = ImagePicker();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    edit();
+  }
+
+  void edit() async {
+    final pref = await SharedPreferences.getInstance();
+    final res = pref.getString("phone");
+    setState(() {
+      contact = jsonDecode(res!);
+      fname.text = contact![index!]["fname"];
+      lname.text = contact![index!]["lname"];
+      email.text = contact![index!]["email"];
+      phone.text = contact![index!]["phone"];
+      image = base64Decode(contact![index!]["photo"]);
+    });
+    print(contact);
+  }
+
   void pickImg() async {
     showDialog(
         context: context,
@@ -60,7 +86,6 @@ class _ContactState extends State<Contact> {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
         Navigator.pop(context);
-
       } else {
         print("error!");
       }
@@ -70,45 +95,50 @@ class _ContactState extends State<Contact> {
   void saveData() async {
     final pref = await SharedPreferences.getInstance();
     final res = pref.getString("phone");
-    final bytes = await _image!.readAsBytes();
-    final base64img = base64Encode(bytes);
+    if (_image != null) {
+      final bytes = await _image!.readAsBytes();
+      final base64img = base64Encode(bytes);
+      base = base64img;
+    } else {
+      base = base64Encode(image!);
+    }
     try {
-      List<dynamic> contact = jsonDecode(res!);
-      contact.add({
+      contact = jsonDecode(res!);
+      contact![index!] = {
         "fname": fname.text,
         "lname": lname.text,
         "email": email.text,
         "phone": phone.text,
-        "photo": base64img
-      });
+        "photo": base
+      };
       pref.setString("phone", jsonEncode(contact));
       print(contact);
     } catch (error) {
-      List<dynamic> contact = [
+      contact = [
         {
           "fname": fname.text,
           "lname": lname.text,
           "email": email.text,
           "phone": phone.text,
-          "photo": base64img
+          "photo": base
         }
       ];
       pref.setString("phone", jsonEncode(contact));
       print(contact);
     }
-      Navigator.pushNamedAndRemoveUntil(context, "/homePage", (Route) => false);
-    // Navigator.pushNamed(context, "/firstPage");
+    Navigator.pushNamedAndRemoveUntil(context, "/homePage", (Route) => false);
   }
 
   @override
   Widget build(BuildContext context) {
+    index = int.parse((ModalRoute.of(context)!.settings.arguments as String));
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Center(
             child: Text(
-          "ADD CONTACT",
+          "Edit Contact",
           style: TextStyle(color: Colors.black),
         )),
         actions: [
@@ -142,17 +172,24 @@ class _ContactState extends State<Contact> {
                               height: 100,
                               fit: BoxFit.cover,
                             )
-                          : Container(
-                              width: 100,
-                              height: 100,
-                              color: Colors.blue,
-                              child: Center(
-                                  child: Icon(
-                                Icons.camera_alt_outlined,
-                                size: 50,
-                                color: Colors.white,
-                              )),
-                            ))),
+                          : image != null
+                              ? Image.memory(
+                                  image!,
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                )
+                              : Container(
+                                  width: 100,
+                                  height: 100,
+                                  color: Colors.blue,
+                                  child: Center(
+                                      child: Icon(
+                                    Icons.camera_alt_outlined,
+                                    size: 50,
+                                    color: Colors.white,
+                                  )),
+                                ))),
             ),
             SizedBox(height: 40),
             Container(
@@ -257,7 +294,6 @@ class _ContactState extends State<Contact> {
                     ),
                     child: TextField(
                       keyboardType: TextInputType.emailAddress,
-
                       controller: email,
                       decoration: InputDecoration(
                           hintText: "EmailAddress",
@@ -297,7 +333,6 @@ class _ContactState extends State<Contact> {
                     ),
                     child: TextField(
                       keyboardType: TextInputType.number,
-
                       controller: phone,
                       decoration: InputDecoration(
                           hintText: "PhoneNumber",

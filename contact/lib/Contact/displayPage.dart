@@ -39,24 +39,39 @@ class _DisplayState extends State<Display> {
     delete.removeAt(index);
     pref.setString("phone", jsonEncode(delete));
     display();
+    Navigator.pushNamed(context, "/homePage");
   }
 
-  // void editDelete() async {
-  //   showDialog(
-  //       context: context,
-  //       builder: (BuildContext context) {
-  //         return AlertDialog(
-  //           title: Text("Choose any?"),
-  //           actions: [
-  //             TextButton(
-  //                 onPressed: () {
-  //                   delete(index!);
-  //                 },
-  //                 child: Text("Delete"))
-  //           ],
-  //         );
-  //       });
-  // }
+  void edit() {
+    Navigator.pushNamed(context, "/editPage", arguments: index.toString());
+  }
+
+  void editDelete() async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              "Choose any?",
+              style: TextStyle(color: Colors.blue),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  delete(index!);
+                },
+                child: Text("Delete", style: TextStyle(color: Colors.blue)),
+              ),
+              TextButton(
+                onPressed: () {
+                  edit();
+                },
+                child: Text("Edit", style: TextStyle(color: Colors.blue)),
+              ),
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +83,7 @@ class _DisplayState extends State<Display> {
           actions: [
             IconButton(
                 onPressed: () {
-                  // editDelete();
+                  editDelete();
                 },
                 icon: Icon(Icons.more_horiz))
           ],
@@ -89,7 +104,7 @@ class _DisplayState extends State<Display> {
                     : Container(
                         width: 15,
                         height: 150,
-                        color: Colors.black,
+                        color: Colors.blue,
                         child: Center(
                           child: Text(
                             "image is not available",
@@ -107,14 +122,14 @@ class _DisplayState extends State<Display> {
                         children: [
                           Text(
                             contact![index!]["fname"],
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 25),
                           ),
                           SizedBox(
                             width: 10,
                           ),
                           Text(
                             contact![index!]["lname"],
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 25),
                           ),
                         ],
                       )
@@ -144,22 +159,51 @@ class _DisplayState extends State<Display> {
                                 : Text("error"),
                           ),
                           Text("Mobile | India"),
+                          SizedBox(
+                            height: 30,
+                          ),
                         ],
                       ),
                       Spacer(),
                       Container(
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.only(bottom: 25),
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.blue),
                         child: Icon(
                           Icons.call,
-                          color: Colors.black,
-                          size: 30,
+                          color: Colors.white,
+                          size: 20,
                         ),
                       ),
-                      SizedBox(width: 40),
+                      SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Message",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
                       Container(
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.only(top: 15),
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.blue),
                         child: Icon(
                           Icons.message,
-                          color: Colors.black,
-                          size: 30,
+                          color: Colors.white,
+                          size: 20,
                         ),
                       ),
                     ],
@@ -175,12 +219,57 @@ class _DisplayState extends State<Display> {
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Spacer(),
-                      Icon(
-                        Icons.video_call,
-                        size: 40,
-                      )
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.only(top: 15),
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.blue),
+                        child: Icon(
+                          Icons.video_call,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
                     ],
-                  )
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text("Email Address"),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        child: contact != null
+                            ? Text(
+                                contact![index!]["email"],
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              )
+                            : Text("error"),
+                      ),
+                      Spacer(),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.only(bottom: 25),
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.blue),
+                        child: Icon(
+                          Icons.email,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             )
