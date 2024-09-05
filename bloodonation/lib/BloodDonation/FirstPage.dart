@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class FirsPage extends StatefulWidget {
-  const FirsPage({super.key});
+class FirstPage extends StatefulWidget {
+  const FirstPage({super.key});
 
   @override
-  State<FirsPage> createState() => _FirsPageState();
+  State<FirstPage> createState() => _FirstPageState();
 }
 
-class _FirsPageState extends State<FirsPage> {
+class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,35 +16,47 @@ class _FirsPageState extends State<FirsPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
-            child: Container(
-              width: 200,
-              height: 200,
-              child: Image.asset("./image/blood-drop.webp")),
-          ),
-          SizedBox(height: 10,),
-          Text("iBlood",style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),
-          ),
           Stack(
             clipBehavior: Clip.none,
             children: [
-              Container(
+              Align(
                 alignment: Alignment.center,
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Colors.black
+                child: Column(
+                  children: [
+                    Container(
+                        width: 200,
+                        height: 200,
+                        child: Image.asset("./image/blood-drop.webp")),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "iBlood",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               ),
               Positioned(
-                right: -5,
-                left: -5,
+                left: 210,
+                top: 30,
                 child: Container(
-                 width: 20,
-                 height: 20,
-                 child: Center(child: Text("+",style: TextStyle(color: Colors.white,fontSize: 20),)),
-              ))
+                  alignment: Alignment.center,
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.black),
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/secondPage");
+                      },
+                      icon: Icon(Icons.add, color: Colors.white)),
+                ),
+              ),
             ],
           )
         ],
