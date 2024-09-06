@@ -24,8 +24,8 @@ class _FirstPageState extends State<FirstPage> {
                 child: Column(
                   children: [
                     Container(
-                        width: 200,
-                        height: 200,
+                        width: 300,
+                        height: 300,
                         child: Image.asset("./image/blood-drop.webp")),
                     SizedBox(
                       height: 10,
