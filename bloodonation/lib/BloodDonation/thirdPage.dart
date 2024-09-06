@@ -20,7 +20,7 @@ class _ThirdPageState extends State<ThirdPage> {
         ),
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 180, 15, 3),
+        backgroundColor: Colors.red[900]
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -51,7 +51,7 @@ class _ThirdPageState extends State<ThirdPage> {
                     BoxShadow(
                         blurRadius: 5,
                         offset: Offset(5, 5),
-                        color: const Color.fromARGB(255, 219, 214, 214))
+                        color:Colors.grey)
                   ]),
               child: TextField(
                 decoration: InputDecoration(
@@ -79,7 +79,7 @@ class _ThirdPageState extends State<ThirdPage> {
                     BoxShadow(
                         blurRadius: 5,
                         offset: Offset(5, 5),
-                        color: const Color.fromARGB(255, 219, 214, 214))
+                        color: Colors.grey)
                   ]),
               child: TextField(
                 keyboardType: TextInputType.number,
@@ -108,7 +108,7 @@ class _ThirdPageState extends State<ThirdPage> {
                     BoxShadow(
                         blurRadius: 5,
                         offset: Offset(5, 5),
-                        color: const Color.fromARGB(255, 219, 214, 214))
+                        color: Colors.grey)
                   ]),
               child: TextField(
                 keyboardType: TextInputType.emailAddress,
@@ -137,7 +137,7 @@ class _ThirdPageState extends State<ThirdPage> {
                     BoxShadow(
                         blurRadius: 5,
                         offset: Offset(5, 5),
-                        color: const Color.fromARGB(255, 219, 214, 214))
+                        color: Colors.grey)
                   ]),
               child: TextField(
                 keyboardType: TextInputType.number,
@@ -166,7 +166,7 @@ class _ThirdPageState extends State<ThirdPage> {
                     BoxShadow(
                         blurRadius: 5,
                         offset: Offset(5, 5),
-                        color: const Color.fromARGB(255, 219, 214, 214))
+                        color: Colors.grey)
                   ]),
               child: TextField(
                 decoration: InputDecoration(
@@ -194,7 +194,7 @@ class _ThirdPageState extends State<ThirdPage> {
                     BoxShadow(
                         blurRadius: 5,
                         offset: Offset(5, 5),
-                        color: const Color.fromARGB(255, 219, 214, 214))
+                        color: Colors.grey)
                   ]),
               child: TextField(
                 decoration: InputDecoration(
@@ -222,7 +222,7 @@ class _ThirdPageState extends State<ThirdPage> {
                     BoxShadow(
                         blurRadius: 5,
                         offset: Offset(5, 5),
-                        color: const Color.fromARGB(255, 219, 214, 214))
+                        color: Colors.grey)
                   ]),
               child: TextField(
                 decoration: InputDecoration(
@@ -250,7 +250,7 @@ class _ThirdPageState extends State<ThirdPage> {
                     BoxShadow(
                         blurRadius: 5,
                         offset: Offset(5, 5),
-                        color: const Color.fromARGB(255, 219, 214, 214))
+                        color: Colors.grey)
                   ]),
               child: TextField(
                 keyboardType: TextInputType.number,
@@ -263,14 +263,25 @@ class _ThirdPageState extends State<ThirdPage> {
             SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                "SUBMIT",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.red[900]),
-            )
+           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+             children: [
+               Container(
+                 child: TextButton(onPressed: (){}, child: Text("SUBMIT",style: TextStyle(color: Colors.red[900]),),
+                 style: TextButton.styleFrom(
+                  backgroundColor: Colors.white,
+                 ),
+                 ),
+               ),
+               Spacer(),
+               TextButton(onPressed: (){}, child: Text("CANCEL",style: TextStyle(color: Colors.red[900])),
+                 style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                shadowColor: Colors.grey[600]
+               ),
+               )
+             ],
+           ),
           ],
         ),
       ),
