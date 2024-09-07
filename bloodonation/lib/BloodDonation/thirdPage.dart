@@ -85,7 +85,9 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: Colors.grey)
+                        blurRadius: 5, 
+                        offset: Offset(5, 5), 
+                        color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
                 decoration: InputDecoration(
@@ -111,7 +113,7 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: Colors.grey)
+                        blurRadius: 5, offset: Offset(5, 5), color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
                 keyboardType: TextInputType.number,
@@ -138,7 +140,7 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: Colors.grey)
+                        blurRadius: 5, offset: Offset(5, 5), color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
                 keyboardType: TextInputType.emailAddress,
@@ -165,7 +167,7 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: Colors.grey)
+                        blurRadius: 5, offset: Offset(5, 5), color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
                 keyboardType: TextInputType.number,
@@ -194,7 +196,7 @@ class _ThirdPageState extends State<ThirdPage> {
                       BoxShadow(
                           blurRadius: 5,
                           offset: Offset(5, 5),
-                          color: Colors.grey)
+                          color: const Color.fromARGB(255, 250, 225, 223))
                     ]),
                 child: Row(
                   children: [
@@ -243,7 +245,7 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: Colors.grey)
+                        blurRadius: 5, offset: Offset(5, 5), color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
                 keyboardType: TextInputType.datetime,
@@ -275,7 +277,7 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: Colors.grey)
+                        blurRadius: 5, offset: Offset(5, 5), color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
                 keyboardType: TextInputType.number,
