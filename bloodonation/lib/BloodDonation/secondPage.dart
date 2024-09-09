@@ -11,10 +11,10 @@ class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "BLOOD REQUESTS",
+          "DETAILS",
           style: TextStyle(color: Colors.white),
         ),
         iconTheme: IconThemeData(color: Colors.white),
@@ -60,7 +60,7 @@ class _SecondPageState extends State<SecondPage> {
                             BoxShadow(
                                 blurRadius: 5,
                                 offset: Offset(5, 5),
-                                color: Colors.grey)
+                                color: const Color.fromARGB(255, 250, 225, 223))
                           ]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,

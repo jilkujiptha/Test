@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThirdPage extends StatefulWidget {
   const ThirdPage({super.key});
@@ -8,9 +11,16 @@ class ThirdPage extends StatefulWidget {
 }
 
 class _ThirdPageState extends State<ThirdPage> {
+  TextEditingController name = TextEditingController();
+  TextEditingController age = TextEditingController();
+  TextEditingController number = TextEditingController();
+  TextEditingController weight = TextEditingController();
   TextEditingController date = TextEditingController();
+  TextEditingController email = TextEditingController();
+
   String? group;
   String? _isSelected;
+  bool _isChecked = false;
   final List<String> groups = [
     "A+",
     "A-",
@@ -22,7 +32,7 @@ class _ThirdPageState extends State<ThirdPage> {
     "o-"
   ];
   void birthDate() {
-    RegExp reg = RegExp(r'([0-2]\d||3[0-1])-(0\d||1[0-2])-(\d{4})$');
+    RegExp reg = RegExp(r'(\d{4})-(0\d||1[0-2])-([0-2]\d||3[0-1])$');
     reg.hasMatch(date.text)
         ? Navigator.pushNamed(context, "/secondPage")
         : showDialog(
@@ -43,6 +53,37 @@ class _ThirdPageState extends State<ThirdPage> {
                 ],
               );
             });
+  }
+
+  void addData() async {
+    final pref = await SharedPreferences.getInstance();
+    final res = pref.getString("blood");
+    try {
+      List<dynamic> ls = jsonDecode(res!);
+      ls.add({
+        "name": name.text,
+        "age": age.text,
+        "email": email.text,
+        "number": number.text,
+        "date": date.text,
+        "weight": weight.text
+      });
+      pref.setString("blood", jsonEncode(ls));
+      print(ls);
+    } catch (e) {
+      List<dynamic> ls = [
+        {
+          "name": name.text,
+          "age": age.text,
+          "email": email.text,
+          "number": number.text,
+          "date": date.text,
+          "weight": weight.text
+        }
+      ];
+      pref.setString("blood", jsonEncode(ls));
+      print(ls);
+    }
   }
 
   @override
@@ -85,11 +126,12 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, 
-                        offset: Offset(5, 5), 
+                        blurRadius: 5,
+                        offset: Offset(5, 5),
                         color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
+                controller: name,
                 decoration: InputDecoration(
                     hintText: "Full Name",
                     hintStyle: TextStyle(color: Colors.grey),
@@ -113,9 +155,12 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: const Color.fromARGB(255, 250, 225, 223))
+                        blurRadius: 5,
+                        offset: Offset(5, 5),
+                        color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
+                controller: age,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     hintText: "Age",
@@ -140,9 +185,12 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: const Color.fromARGB(255, 250, 225, 223))
+                        blurRadius: 5,
+                        offset: Offset(5, 5),
+                        color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
+                controller: email,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     hintText: "Email",
@@ -167,9 +215,12 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: const Color.fromARGB(255, 250, 225, 223))
+                        blurRadius: 5,
+                        offset: Offset(5, 5),
+                        color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
+                controller: number,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     hintText: "Mobile Number",
@@ -202,16 +253,11 @@ class _ThirdPageState extends State<ThirdPage> {
                   children: [
                     Text(
                       group == null ? "Blood Group" : " $group",
-                      style: TextStyle(color: Colors.grey, fontSize: 17),
+                      style: TextStyle(color: Colors.black, fontSize: 17),
                     ),
                     Spacer(),
                     DropdownButton(
                         padding: EdgeInsets.only(right: 16),
-                        icon: Icon(
-                          Icons.arrow_circle_down_outlined,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
                         underline: Container(
                           height: 0,
                         ),
@@ -245,7 +291,9 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: const Color.fromARGB(255, 250, 225, 223))
+                        blurRadius: 5,
+                        offset: Offset(5, 5),
+                        color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
                 keyboardType: TextInputType.datetime,
@@ -277,9 +325,12 @@ class _ThirdPageState extends State<ThirdPage> {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        blurRadius: 5, offset: Offset(5, 5), color: const Color.fromARGB(255, 250, 225, 223))
+                        blurRadius: 5,
+                        offset: Offset(5, 5),
+                        color: const Color.fromARGB(255, 250, 225, 223))
                   ]),
               child: TextField(
+                controller: weight,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     hintText: "Weight",
@@ -289,41 +340,91 @@ class _ThirdPageState extends State<ThirdPage> {
             ),
             SizedBox(height: 20),
             Container(
-              margin: EdgeInsets.only(left: 10, right: 10),
+              margin: EdgeInsets.only(
+                left: 10,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "GENDER",
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(
+                        color: Colors.grey, fontWeight: FontWeight.bold),
                   ),
-                  RadioListTile(
-                      title: Text("MALE"),
-                      value: "MALE",
-                      groupValue: _isSelected,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _isSelected = value;
-                        });
-                      }),
-                  RadioListTile(
-                      title: Text("FEMALE"),
-                      value: "FEMALE",
-                      groupValue: _isSelected,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _isSelected = value;
-                        });
-                      }),
-                  RadioListTile(
-                      title: Text("OTHERS"),
-                      value: "OTHERS",
-                      groupValue: _isSelected,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _isSelected = value;
-                        });
-                      }),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    flex: 0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "MALE",
+                          style: TextStyle(
+                              color: Colors.grey, fontWeight: FontWeight.bold),
+                        ),
+                        Radio(
+                            activeColor: Colors.red,
+                            value: "MALE",
+                            groupValue: _isSelected,
+                            onChanged: (String? value) {
+                              setState(() {
+                                _isSelected = value;
+                              });
+                            }),
+                        Text(
+                          "FEMALE",
+                          style: TextStyle(
+                              color: Colors.grey, fontWeight: FontWeight.bold),
+                        ),
+                        Radio(
+                            activeColor: Colors.red,
+                            value: "FEMALE",
+                            groupValue: _isSelected,
+                            onChanged: (String? value) {
+                              setState(() {
+                                _isSelected = value;
+                              });
+                            }),
+                        Text(
+                          "OTHERS",
+                          style: TextStyle(
+                              color: Colors.grey, fontWeight: FontWeight.bold),
+                        ),
+                        Radio(
+                            activeColor: Colors.red,
+                            value: "OTHERS",
+                            groupValue: _isSelected,
+                            onChanged: (String? value) {
+                              setState(() {
+                                _isSelected = value;
+                              });
+                            }),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Checkbox(
+                          activeColor: Colors.red,
+                          checkColor: Colors.white,
+                          value: _isChecked,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              _isChecked = value!;
+                            });
+                          }),
+                      Text(
+                        "I agree to Donate blood",
+                        style: TextStyle(fontSize: 15, color: Colors.red[900]),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
@@ -348,9 +449,11 @@ class _ThirdPageState extends State<ThirdPage> {
                 Spacer(),
                 TextButton(
                   onPressed: () {
+                    addData();
                     setState(() {
                       birthDate();
                     });
+                    // Navigator.pushNamed(context, "/secondPage");
                   },
                   child:
                       Text("SUBMIT", style: TextStyle(color: Colors.red[900])),
