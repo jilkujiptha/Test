@@ -17,6 +17,7 @@ class _ThirdPageState extends State<ThirdPage> {
   TextEditingController weight = TextEditingController();
   TextEditingController date = TextEditingController();
   TextEditingController email = TextEditingController();
+  TextEditingController location = TextEditingController();
 
   String? group;
   String? _isSelected;
@@ -33,17 +34,16 @@ class _ThirdPageState extends State<ThirdPage> {
   ];
   void birthDate() {
     RegExp reg = RegExp(r'(\d{4})-(0\d||1[0-2])-([0-2]\d||3[0-1])$');
-    reg.hasMatch(date.text)
-        ? Navigator.pushNamed(context, "/secondPage")
-        : showDialog(
+    _isChecked == false
+        ? showDialog(
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
                 title: Text(
-                  "Incorrect!",
+                  "Error!",
                   style: TextStyle(color: Colors.red),
                 ),
-                content: Text("Please enter valid date"),
+                content: Text("Please agree the terms and conditions"),
                 actions: [
                   TextButton(
                       onPressed: () {
@@ -52,7 +52,27 @@ class _ThirdPageState extends State<ThirdPage> {
                       child: Text("Cancel"))
                 ],
               );
-            });
+            })
+        : reg.hasMatch(date.text)
+            ? addData()
+            : showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text(
+                      "Incorrect!",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    content: Text("Please enter valid date"),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text("Cancel"))
+                    ],
+                  );
+                });
   }
 
   void addData() async {
@@ -66,7 +86,10 @@ class _ThirdPageState extends State<ThirdPage> {
         "email": email.text,
         "number": number.text,
         "date": date.text,
-        "weight": weight.text
+        "weight": weight.text,
+        "location": location.text,
+        "gender": _isSelected,
+        "bloodgroup": group
       });
       pref.setString("blood", jsonEncode(ls));
       print(ls);
@@ -78,12 +101,16 @@ class _ThirdPageState extends State<ThirdPage> {
           "email": email.text,
           "number": number.text,
           "date": date.text,
-          "weight": weight.text
+          "weight": weight.text,
+          "location": location.text,
+          "gender": _isSelected,
+          "bloodgroup": group
         }
       ];
       pref.setString("blood", jsonEncode(ls));
       print(ls);
     }
+    Navigator.pushNamed(context, "/secondPage");
   }
 
   @override
@@ -253,7 +280,7 @@ class _ThirdPageState extends State<ThirdPage> {
                   children: [
                     Text(
                       group == null ? "Blood Group" : " $group",
-                      style: TextStyle(color: Colors.black, fontSize: 17),
+                      style: TextStyle(color: Colors.grey, fontSize: 17),
                     ),
                     Spacer(),
                     DropdownButton(
@@ -274,6 +301,30 @@ class _ThirdPageState extends State<ThirdPage> {
                         }),
                   ],
                 )),
+            SizedBox(height: 20),
+            Container(
+              margin: EdgeInsets.only(left: 10, right: 10),
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              padding: EdgeInsets.only(left: 15),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 5,
+                        offset: Offset(5, 5),
+                        color: const Color.fromARGB(255, 250, 225, 223))
+                  ]),
+              child: TextField(
+                controller: location,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                    hintText: "Location",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: InputBorder.none),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -299,7 +350,7 @@ class _ThirdPageState extends State<ThirdPage> {
                 keyboardType: TextInputType.datetime,
                 controller: date,
                 decoration: InputDecoration(
-                    hintText: "DOB",
+                    hintText: "DOB (yyyy mm dd)",
                     hintStyle: TextStyle(color: Colors.grey),
                     border: InputBorder.none),
               ),
@@ -360,13 +411,13 @@ class _ThirdPageState extends State<ThirdPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "MALE",
+                          "Male",
                           style: TextStyle(
                               color: Colors.grey, fontWeight: FontWeight.bold),
                         ),
                         Radio(
                             activeColor: Colors.red,
-                            value: "MALE",
+                            value: "Male",
                             groupValue: _isSelected,
                             onChanged: (String? value) {
                               setState(() {
@@ -374,13 +425,13 @@ class _ThirdPageState extends State<ThirdPage> {
                               });
                             }),
                         Text(
-                          "FEMALE",
+                          "Female",
                           style: TextStyle(
                               color: Colors.grey, fontWeight: FontWeight.bold),
                         ),
                         Radio(
                             activeColor: Colors.red,
-                            value: "FEMALE",
+                            value: "Female",
                             groupValue: _isSelected,
                             onChanged: (String? value) {
                               setState(() {
@@ -388,13 +439,13 @@ class _ThirdPageState extends State<ThirdPage> {
                               });
                             }),
                         Text(
-                          "OTHERS",
+                          "Others",
                           style: TextStyle(
                               color: Colors.grey, fontWeight: FontWeight.bold),
                         ),
                         Radio(
                             activeColor: Colors.red,
-                            value: "OTHERS",
+                            value: "Others",
                             groupValue: _isSelected,
                             onChanged: (String? value) {
                               setState(() {
@@ -449,7 +500,6 @@ class _ThirdPageState extends State<ThirdPage> {
                 Spacer(),
                 TextButton(
                   onPressed: () {
-                    addData();
                     setState(() {
                       birthDate();
                     });
