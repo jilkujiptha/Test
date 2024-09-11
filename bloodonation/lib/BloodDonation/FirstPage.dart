@@ -1,3 +1,4 @@
+import 'package:bloodonation/BloodDonation/secondPage.dart';
 import 'package:flutter/material.dart';
 
 class FirstPage extends StatefulWidget {
@@ -9,6 +10,20 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    hideScreen();
+  }
+
+  Future<void> hideScreen() async {
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => SecondPage()));
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -16,49 +31,29 @@ class _FirstPageState extends State<FirstPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Stack(
-            clipBehavior: Clip.none,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Align(
-                alignment: Alignment.center,
-                child: Column(
-                  children: [
-                    Container(
-                        width: 300,
-                        height: 300,
-                        child: Image.asset("./image/blood-drop.webp")),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "iBlood",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
+              Container(
+                  margin: EdgeInsets.only(left: 50),
+                  width: 300,
+                  height: 300,
+                  child: Center(child: Image.asset("./image/blood-drop.webp"))),
+              SizedBox(
+                height: 10,
               ),
-              Positioned(
-                left: 210,
-                top: 30,
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Colors.black),
-                  child: IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/secondPage");
-                      },
-                      icon: Icon(Icons.add, color: Colors.white)),
+              Container(
+                margin: EdgeInsets.only(left: 50),
+                child: Text(
+                  "iBlood",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );

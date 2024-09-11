@@ -29,8 +29,8 @@ class _ThirdPageState extends State<ThirdPage> {
     "B-",
     "AB+",
     "AB-",
-    "o+",
-    "o-"
+    "O+",
+    "O-"
   ];
   void birthDate() {
     RegExp reg = RegExp(r'(\d{4})-(0\d||1[0-2])-([0-2]\d||3[0-1])$');
@@ -284,6 +284,7 @@ class _ThirdPageState extends State<ThirdPage> {
                     ),
                     Spacer(),
                     DropdownButton(
+                        dropdownColor: Colors.white,
                         padding: EdgeInsets.only(right: 16),
                         underline: Container(
                           height: 0,
@@ -291,7 +292,10 @@ class _ThirdPageState extends State<ThirdPage> {
                         items: groups.map((String Group) {
                           return DropdownMenuItem(
                             value: Group,
-                            child: Text(Group),
+                            child: Text(
+                              Group,
+                              style: TextStyle(color: Colors.red[900]),
+                            ),
                           );
                         }).toList(),
                         onChanged: (value) {

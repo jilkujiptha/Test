@@ -13,6 +13,8 @@ class SecondPage extends StatefulWidget {
 class _SecondPageState extends State<SecondPage> {
   @override
   List<dynamic> ls = [];
+  String? group;
+
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -53,16 +55,6 @@ class _SecondPageState extends State<SecondPage> {
                   "View All",
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
-                Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, "/thirdPage");
-                  },
-                  child: Text(
-                    "Regitration",
-                    style: TextStyle(color: Colors.red[900], fontSize: 20),
-                  ),
-                )
               ],
             ),
             SizedBox(height: 20),
@@ -187,6 +179,27 @@ class _SecondPageState extends State<SecondPage> {
             )
           ],
         ),
+      ),
+      floatingActionButton: Container(
+        width: 100,
+        height: 50,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 10,
+                  color: const Color.fromARGB(255, 250, 225, 223))
+            ]),
+        child: TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "/thirdPage");
+            },
+            child: Text(
+              "Register",
+              style: TextStyle(
+                  color: const Color.fromARGB(255, 180, 15, 3), fontSize: 19),
+            )),
       ),
     );
   }
