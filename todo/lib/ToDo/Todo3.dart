@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/provider/numberListProvider.dart';
 
 class ToDo3 extends StatefulWidget {
   const ToDo3({super.key});
@@ -8,10 +10,12 @@ class ToDo3 extends StatefulWidget {
 }
 
 class _ToDo3State extends State<ToDo3> {
+  int? index;
   TextEditingController add = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    index=int.parse(ModalRoute.of(context)!.settings.arguments as String);
+    return Consumer<NumberListProvider>(builder: (context,TodoListModel,child)=> Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 1, 204, 187),
         title: Center(
@@ -29,8 +33,8 @@ class _ToDo3State extends State<ToDo3> {
           Row(
             children: [
               Container(
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(20),
+                margin: EdgeInsets.all(20),
+                padding: EdgeInsets.all(10),
                 width: 300,
                 height: 60,
                 decoration: BoxDecoration(
@@ -38,12 +42,16 @@ class _ToDo3State extends State<ToDo3> {
                     color: Colors.white,
                     boxShadow: [BoxShadow(blurRadius: 5, color: Colors.grey)]),
                 child: TextField(
+                  onTap: () {
+                    add.text=TodoListModel.ls[index!];
+                  },
                   controller: add,
                   decoration: InputDecoration(
                       hintText: "Edit Tasks",
                       hintStyle: TextStyle(
                           color: const Color.fromARGB(255, 1, 204, 187)),
                       border: InputBorder.none),
+                      style: TextStyle(color: const Color.fromARGB(255, 1, 204, 187)),
                 ),
               ),
               Container(
@@ -55,7 +63,10 @@ class _ToDo3State extends State<ToDo3> {
                     color: Colors.white,
                     boxShadow: [BoxShadow(blurRadius: 5, color: Colors.grey)]),
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      TodoListModel.ls[index!]=add.text;
+                      Navigator.pushNamedAndRemoveUntil(context, "/todo1", (route)=>false);
+                    },
                     child: Text(
                       "EDIT",
                       style: TextStyle(
@@ -66,6 +77,6 @@ class _ToDo3State extends State<ToDo3> {
           ),
         ],
       ),
-    );;
+    ));
   }
 }

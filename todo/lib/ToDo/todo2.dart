@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/provider/numberListProvider.dart';
 
 class ToDo2 extends StatefulWidget {
   const ToDo2({super.key});
@@ -11,7 +13,7 @@ class _ToDo2State extends State<ToDo2> {
   TextEditingController add = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Consumer<NumberListProvider>(builder: (context,TodoListModel,child)=>Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 1, 204, 187),
         title: Center(
@@ -30,7 +32,7 @@ class _ToDo2State extends State<ToDo2> {
             children: [
               Container(
                 margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(10),
                 width: 300,
                 height: 60,
                 decoration: BoxDecoration(
@@ -44,6 +46,7 @@ class _ToDo2State extends State<ToDo2> {
                       hintStyle: TextStyle(
                           color: const Color.fromARGB(255, 1, 204, 187)),
                       border: InputBorder.none),
+                      style: TextStyle(color: const Color.fromARGB(255, 1, 204, 187)),
                 ),
               ),
               Container(
@@ -56,7 +59,11 @@ class _ToDo2State extends State<ToDo2> {
                     boxShadow: [BoxShadow(blurRadius: 5, color: Colors.grey)]),
                 child: TextButton(
                     onPressed: () {
+                      var task=add.text;
+                      TodoListModel.addList(task);
+                      Navigator.pushNamedAndRemoveUntil(context, "/todo1", (route)=>false);
                     },
+                    
                     child: Text(
                       "ADD",
                       style: TextStyle(
@@ -67,6 +74,6 @@ class _ToDo2State extends State<ToDo2> {
           ),
         ],
       ),
-    );
+    ));
   }
 }

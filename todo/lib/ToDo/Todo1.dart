@@ -13,6 +13,11 @@ class ToDO1 extends StatefulWidget {
 
 class _ToDO1State extends State<ToDO1> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Consumer<NumberListProvider>(
         builder: (context, TodoListModel, child) => Scaffold(
@@ -20,7 +25,7 @@ class _ToDO1State extends State<ToDO1> {
                 backgroundColor: const Color.fromARGB(255, 1, 204, 187),
                 title: Center(
                     child: Text(
-                  "ToDo List",
+                  "TODO LIST",
                   style: TextStyle(color: Colors.white),
                 )),
               ),
@@ -29,60 +34,68 @@ class _ToDO1State extends State<ToDO1> {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                          margin: EdgeInsets.all(10),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ToDo3()));
-                            },
-                            child: Text(
-                              "EDIT",
-                              style: TextStyle(
-                                  color:
-                                      const Color.fromARGB(255, 1, 204, 187)),
-                            ),
-                          )),
-                    ],
-                  ),
                   Expanded(
                     child: ListView.builder(
                         itemCount: TodoListModel.ls.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: EdgeInsets.only(
-                                bottom: 10, top: 10, left: 20, right: 20),
-                            padding: EdgeInsets.all(15),
-                            width: MediaQuery.of(context).size.width * .10,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(blurRadius: 5, color: Colors.grey)
-                                ]),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                GestureDetector(
-                                  onLongPress: () {
-                                   setState(() {
+                          return GestureDetector(
+                              onLongPress: () {
+                                    showDialog(context: context, builder: (BuildContext context){
+                                      return AlertDialog(
+                                        backgroundColor:  Colors.white,
+                                            title: Text("Do you want to Delete?",style: TextStyle(color:  const Color.fromARGB(
+                                            255, 1, 204, 187),),
+                                            ),
+                                            actions: [
+                                              TextButton(onPressed: (){
+                                                Navigator.pop(context);
+                                              }, child: Text("Cancel",style: TextStyle(color:  const Color.fromARGB(
+                                            255, 1, 204, 187),
+                                            ),
+                                          ),
+                                        ),
+                                              TextButton(onPressed: (){
+                                          setState(() {
                                       TodoListModel.ls.removeAt(index);
+                                                Navigator.pop(context);
+
                                    });
+                                              }, child: Text("Delete",style: TextStyle(color: Colors.white)))
+                                            ],
+                                      );
+                                    });
                                   },
-                                  child: Text(
-                                    "Delete",
-                                    style: TextStyle(
-                                        color: const Color.fromARGB(
-                                            255, 1, 204, 187)),
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                  bottom: 10, top: 10, left: 20, right: 20),
+                              padding: EdgeInsets.all(15),
+                              width: MediaQuery.of(context).size.width * .10,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(blurRadius: 5, color: Colors.grey)
+                                  ]),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("${TodoListModel.ls[index]}"),
+                                  GestureDetector(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, "/todo3",arguments: index.toString());
+                                    },
+                                    child: Text(
+                                        "EDIT",
+                                        style: TextStyle(
+                                            color: const Color.fromARGB(
+                                                255, 1, 204, 187)),
+                                      ),
                                   ),
-                                ),
-                              ],
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         }),
