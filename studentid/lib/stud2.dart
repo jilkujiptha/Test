@@ -18,9 +18,30 @@ class _StudentId2State extends State<StudentId2> {
   List<dynamic> ls = [];
   final _student = Hive.box("Student");
   void addData() {
-    _student.put(1, "id");
-    
+    if(_student.get("key")!=null){
+   ls= _student.get("key");
+
+     ls.add({
+    "name":c1.text,
+    "age":c2.text,
+    "physics":c3.text,
+    "chemistry":c4.text,
+    "maths":c5.text,
+   });
+    _student.put("key", ls);
+  }else{
+    ls=[{
+    "name":c1.text,
+    "age":c2.text,
+    "physics":c3.text,
+    "chemistry":c4.text,
+    "maths":c5.text,
+    }];
+    print(_student.get("key"));
+    _student.put("key", ls);
+     }
   }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +175,7 @@ class _StudentId2State extends State<StudentId2> {
                     child: TextButton(
                         onPressed: () {},
                         child: Text(
-                          "SAVE",
+                          "CANCEL",
                           style: TextStyle(
                             color: const Color.fromARGB(255, 4, 170, 156),
                           ),
@@ -170,10 +191,11 @@ class _StudentId2State extends State<StudentId2> {
                         ]),
                     child: TextButton(
                         onPressed: () {
+                          addData();
                           Navigator.pushNamed(context, "id3");
                         },
                         child: Text(
-                          "CANCEL",
+                          "SAVE",
                           style: TextStyle(
                             color: const Color.fromARGB(255, 4, 170, 156),
                           ),

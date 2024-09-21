@@ -1,4 +1,7 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class StudentId3 extends StatefulWidget {
   const StudentId3({super.key});
@@ -8,6 +11,24 @@ class StudentId3 extends StatefulWidget {
 }
 
 class _StudentId3State extends State<StudentId3> {
+  List<dynamic> ls=[];
+  final _student = Hive.box("Student");
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    readData();
+  }
+
+  void readData(){
+  if(_student.get("key")!=null){
+     ls=_student.get("key"); 
+  }
+  else{
+   print(ls);
+  }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +45,7 @@ class _StudentId3State extends State<StudentId3> {
       ),
       body: Expanded(
           child: ListView.builder(
-              itemCount: 5,
+              itemCount:ls.length,
               itemBuilder: (context, index) {
                 return Container(
                   margin:
@@ -38,8 +59,15 @@ class _StudentId3State extends State<StudentId3> {
                       boxShadow: [
                         BoxShadow(blurRadius: 5, color: Colors.grey)
                       ]),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(ls[index]["name"]),
+                        ],
+                      ),
                 );
-              })),
+              })
+            ),
       floatingActionButton: Container(
           width: 80,
           height: 40,
