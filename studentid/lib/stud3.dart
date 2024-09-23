@@ -52,7 +52,7 @@ class _StudentId3State extends State<StudentId3> {
                       EdgeInsets.only(bottom: 10, top: 10, left: 50, right: 50),
                   padding: EdgeInsets.all(15),
                   width: 50,
-                  height: 50,
+                  height: 160,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.white,
@@ -62,9 +62,62 @@ class _StudentId3State extends State<StudentId3> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(ls[index]["name"]),
-                        ],
-                      ),
+                          Text(ls[index]["name"],
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+                         ),
+                          SizedBox(width:10 ,),
+                          Row(
+                            children: [
+                              Text("Age : ",
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+
+                              ),
+                         Text(ls[index]["age"]
+                          ),
+                          Spacer(),
+                          Column(
+                            children: [
+                          Text("MARKS",
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,),),
+                          
+                        Row(
+                          children: [
+                            Text("Physics :"),
+                            Text(ls[index]["marks"]["physics"])
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("Chemistry :"),
+                            Text(ls[index]["marks"]["chemistry"])
+
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("Maths :"),
+                            Text(ls[index]["marks"]["maths"])
+
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("TOTAL :",
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: const Color.fromARGB(255, 4, 170, 156),),
+                            ),
+                            Text(
+                        "${int.parse(ls[index]["marks"]["physics"])+int.parse(ls[index]["marks"]["chemistry"])+int.parse(ls[index]["marks"]["maths"])}")
+                          ],
+                        ),
+
+                          ],
+                          ),
+
+                          ],
+                        ),
+                        
+                      ],
+                    ),
                 );
               })
             ),

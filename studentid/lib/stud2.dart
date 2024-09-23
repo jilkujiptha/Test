@@ -24,18 +24,22 @@ class _StudentId2State extends State<StudentId2> {
      ls.add({
     "name":c1.text,
     "age":c2.text,
+    "marks":{
     "physics":c3.text,
     "chemistry":c4.text,
     "maths":c5.text,
+    }
    });
     _student.put("key", ls);
   }else{
     ls=[{
     "name":c1.text,
     "age":c2.text,
+    "marks":{
     "physics":c3.text,
     "chemistry":c4.text,
     "maths":c5.text,
+    }
     }];
     print(_student.get("key"));
     _student.put("key", ls);
