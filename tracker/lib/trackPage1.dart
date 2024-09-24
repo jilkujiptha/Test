@@ -20,6 +20,14 @@ class _ExpensePage1State extends State<ExpensePage1> {
           style: TextStyle(color: Colors.white),
         )),
         iconTheme: IconThemeData(color: Colors.white),
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.pushNamed(context, "track2");
+          }, icon: Icon(Icons.add,
+          color: Colors.white,
+          size: 40,
+          ))
+        ],
       ),
       body: Container(
         alignment: Alignment.center,
