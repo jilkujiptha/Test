@@ -9,7 +9,7 @@ void main() async {
   await Hive.initFlutter();
   var track = await Hive.openBox("myBox");
   runApp(MaterialApp(
-    home: MainPage(),
+    home: ExpensePage1(),
     routes: {
       "track1": (context) => ExpensePage1(),
       "track2": (context) => ExpensePage2()

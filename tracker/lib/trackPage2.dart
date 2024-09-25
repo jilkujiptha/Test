@@ -15,7 +15,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
       appBar: AppBar(
       backgroundColor: Colors.white,
         title: Text("Add New Expenses",style: TextStyle(
-          color:  const Color.fromARGB(255, 79, 58, 112),fontWeight: FontWeight.bold
+          color:  const Color.fromARGB(255, 235, 184, 19),fontWeight: FontWeight.bold
         ),),
       ),
       body:Column(
@@ -28,7 +28,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
-                  color: const Color.fromARGB(255, 79, 58, 112),
+                  color: const Color.fromARGB(255, 235, 184, 19),
                   ),
                   child: Center(child: Text("EXPENSE",
                   style: TextStyle(color: Colors.white),)),
@@ -39,10 +39,10 @@ class _ExpensePage2State extends State<ExpensePage2> {
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.horizontal(right: Radius.circular(20)),
-                  color: const Color.fromARGB(255, 212, 211, 211),
+                  color:  const Color.fromARGB(255, 243, 239, 203)
                   ),
                    child: Center(child: Text("INCOME",
-                   style: TextStyle(color: const Color.fromARGB(255, 79, 58, 112),fontWeight: FontWeight.bold),)),
+                   style: TextStyle(color: const Color.fromARGB(255, 235, 184, 19),fontWeight: FontWeight.bold),)),
                ),
             ],
           ),
@@ -54,13 +54,13 @@ class _ExpensePage2State extends State<ExpensePage2> {
             padding: EdgeInsets.only(left: 20, right: 20),
             decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color:const Color.fromARGB(255, 212, 211, 211),
+            color: const Color.fromARGB(255, 243, 239, 203),
             ),
             child: TextField(
               decoration: InputDecoration(
               hintText: "Spend Money",
               hintStyle: TextStyle(
-             color: const Color.fromARGB(255, 79, 58, 112),fontWeight: FontWeight.bold),
+             color: const Color.fromARGB(255, 235, 184, 19),fontWeight: FontWeight.bold),
             border: InputBorder.none),
              ),
            ),  
@@ -72,13 +72,13 @@ class _ExpensePage2State extends State<ExpensePage2> {
             padding: EdgeInsets.only(left: 20, right: 20),
             decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color:const Color.fromARGB(255, 212, 211, 211),
+            color: const Color.fromARGB(255, 243, 239, 203),
             ),
             child: TextField(
               decoration: InputDecoration(
               hintText: "Date",
               hintStyle: TextStyle(
-             color: const Color.fromARGB(255, 79, 58, 112),fontWeight: FontWeight.bold),
+             color: const Color.fromARGB(255, 235, 184, 19),fontWeight: FontWeight.bold),
             border: InputBorder.none,
             ),
           ),
@@ -91,7 +91,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
             padding: EdgeInsets.only(left: 20, right: 20),
             decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color:const Color.fromARGB(255, 212, 211, 211),
+            color: const Color.fromARGB(255, 243, 239, 203),
             ),
             child: TextField(
               decoration: InputDecoration(
@@ -109,13 +109,13 @@ class _ExpensePage2State extends State<ExpensePage2> {
             padding: EdgeInsets.only(left: 20, right: 20),
             decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color:const Color.fromARGB(255, 212, 211, 211),
+            color: const Color.fromARGB(255, 243, 239, 203),
             ),
             child: TextField(
               decoration: InputDecoration(
               hintText: "Bills",
               hintStyle: TextStyle(
-             color: const Color.fromARGB(255, 79, 58, 112),fontWeight: FontWeight.bold),
+             color: const Color.fromARGB(255, 235, 184, 19),fontWeight: FontWeight.bold),
             border: InputBorder.none),
              ),
            ), 
@@ -129,7 +129,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
                  decoration: BoxDecoration(
                    borderRadius: BorderRadius.circular(20),
                   color:
-                  const Color.fromARGB(255, 79, 58, 112),
+                  const Color.fromARGB(255, 235, 184, 19),
                 ),
                 child: TextButton(onPressed: (){
                   Navigator.pop(context);
@@ -141,7 +141,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
                  decoration: BoxDecoration(
                    borderRadius: BorderRadius.circular(20),
                   color:
-                  const Color.fromARGB(255, 79, 58, 112),
+                  const Color.fromARGB(255, 235, 184, 19),
                 ),
                   child: TextButton(onPressed: (){}, 
                   child:  Text("SAVE",style: TextStyle(color: Colors.white),)),
