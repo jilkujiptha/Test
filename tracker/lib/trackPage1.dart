@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class ExpensePage1 extends StatefulWidget {
   const ExpensePage1({super.key});
@@ -8,6 +9,15 @@ class ExpensePage1 extends StatefulWidget {
 }
 
 class _ExpensePage1State extends State<ExpensePage1> {
+// final _track=Hive.box("Track");
+// int value=0;
+
+// void addIncome(){
+// if(_track.get("key")==null){
+// int _track=int.parse()
+// }
+// }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +40,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
         ],
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             alignment: Alignment.center,
@@ -39,7 +50,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
           ),
           SizedBox(height: 25,),
           Container(
-            margin: EdgeInsets.all(20),
+            margin: EdgeInsets.only(left: 70,right: 50,top: 20),
             padding: EdgeInsets.all(20),
               width: 350,
               height: 200,
@@ -55,7 +66,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
                    children: [
                      Text("₹",style: TextStyle(fontSize: 50,color: Colors.yellow[100]),),
                      SizedBox(width: 20,),
-                     Text("Spent Money",style: TextStyle(color: Colors.yellow[100]),),
+                     Text("Spent Money",style: TextStyle(color: Colors.yellow[100],fontSize: 20)),
                    ],
                  ),
                  Row(
@@ -76,6 +87,31 @@ class _ExpensePage1State extends State<ExpensePage1> {
                ],
              ),
           ),
+          SizedBox(height: 20,),
+          Container(
+            margin: EdgeInsets.only(top: 20,left: 50),
+            child: Text("View All Expenses",
+            style: TextStyle(color: const Color.fromARGB(255, 235, 184, 19),fontSize: 20),)),
+          SizedBox(height: 20,),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 2,
+              itemBuilder: (context,index){
+              return Container(
+                 margin:
+                      EdgeInsets.only(bottom: 10, top: 10, left: 50, right: 50),
+                  padding: EdgeInsets.all(15),
+                  width: MediaQuery.of(context).size.width,
+                  height: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.yellow[50],
+                      boxShadow: [
+                        BoxShadow(blurRadius: 5, color: Colors.grey)
+                      ]),
+              );
+            }),
+          )
         ]
       ),
       drawer: Drawer(

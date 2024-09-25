@@ -8,6 +8,17 @@ class ExpensePage2 extends StatefulWidget {
 }
 
 class _ExpensePage2State extends State<ExpensePage2> {
+  TextEditingController money=TextEditingController();
+  TextEditingController date=TextEditingController();
+  TextEditingController paid=TextEditingController();
+  TextEditingController shop=TextEditingController();
+  TextEditingController bill=TextEditingController();
+
+  final List<String>add =[
+    "Add Bill"
+  ];
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +30,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
         ),),
       ),
       body:Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
             children: [
@@ -57,6 +69,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
             color: const Color.fromARGB(255, 243, 239, 203),
             ),
             child: TextField(
+              controller: money,
               decoration: InputDecoration(
               hintText: "Spend Money",
               hintStyle: TextStyle(
@@ -75,6 +88,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
             color: const Color.fromARGB(255, 243, 239, 203),
             ),
             child: TextField(
+              controller: date,
               decoration: InputDecoration(
               hintText: "Date",
               hintStyle: TextStyle(
@@ -94,15 +108,16 @@ class _ExpensePage2State extends State<ExpensePage2> {
             color: const Color.fromARGB(255, 243, 239, 203),
             ),
             child: TextField(
+              controller: paid,
               decoration: InputDecoration(
               hintText: "Paid to (name or place)",
               hintStyle: TextStyle(
              color: Colors.grey,fontWeight: FontWeight.bold),
             border: InputBorder.none),
              ),
-           ),   
-             SizedBox(height: 30,),
-           Container(
+           ),
+           SizedBox(height: 30,),
+            Container(
             margin: EdgeInsets.only(left: 50,right: 50),
             width: MediaQuery.of(context).size.width,
             height: 40,
@@ -112,18 +127,41 @@ class _ExpensePage2State extends State<ExpensePage2> {
             color: const Color.fromARGB(255, 243, 239, 203),
             ),
             child: TextField(
+              controller: shop,
               decoration: InputDecoration(
-              hintText: "Bills",
+              hintText: "Shop",
               hintStyle: TextStyle(
              color: const Color.fromARGB(255, 235, 184, 19),fontWeight: FontWeight.bold),
-            border: InputBorder.none),
-             ),
-           ), 
+            border: InputBorder.none,
+            ),
+          ),
+       ), 
+           SizedBox(height: 30,), 
+             Container(
+            margin: EdgeInsets.only(left: 50,right: 50),
+            width: MediaQuery.of(context).size.width,
+            height: 40,
+            padding: EdgeInsets.only(left: 20, right: 20),
+            decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: const Color.fromARGB(255, 243, 239, 203),
+            ),
+            child: TextField(
+              controller: shop,
+              decoration: InputDecoration(
+              hintText: "Bill",
+              hintStyle: TextStyle(
+             color: const Color.fromARGB(255, 235, 184, 19),fontWeight: FontWeight.bold),
+            border: InputBorder.none,
+            ),
+          ),
+       ), 
            SizedBox(height: 50,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
+                margin: EdgeInsets.only(left: 50,right: 50),
                 width: 150,
                 height: 40,
                  decoration: BoxDecoration(
