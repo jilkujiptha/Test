@@ -13,21 +13,49 @@ class _ExpensePage2State extends State<ExpensePage2> {
   TextEditingController paid = TextEditingController();
   TextEditingController food = TextEditingController();
   List<dynamic> ls = [];
+  int value=0;
   final _track = Hive.box("myBox");
+  DateTime date=DateTime.now();
+
   void addData() {
     if (_track.get("1") != null) {
       ls = _track.get("1");
 
-      ls.add({"money": money.text, "paid": paid.text, "food": food.text});
+      ls.add({
+        "money": money.text, 
+        "paid": paid.text, 
+        "food": food.text,
+        "date":"${date.day.toString().padLeft(2,"0")}-${date.month.toString().padLeft(2,"0")}-${date.year.toString().padLeft(2,"0")}",
+        "time":"${date.hour.toString().padLeft(2,"0")}:${date.minute.toString().padLeft(2,"0")}"
+        });
       _track.put("1", ls);
     } else {
       ls = [
-        {"money": money.text, "paid": paid.text, "food": food.text}
+        {
+          "money": money.text, 
+          "paid": paid.text, 
+          "food": food.text,
+          "date":"${date.day.toString().padLeft(2,"0")}-${date.month.toString().padLeft(2,"0")}-${date.year.toString().padLeft(2,"0")}",
+        "time":"${date.hour.toString().padLeft(2,"0")}:${date.minute.toString().padLeft(2,"0")}"
+          }
       ];
       print(_track.get("1"));
       _track.put("1", ls);
     }
+    addMoney();
   }
+  void addMoney(){
+    setState(() {
+       if (_track.get("3") != null) {
+        value = int.parse(_track.get("3"));
+        value = value + int.parse(money.text);
+        _track.put("3", value.toString());
+      } else {
+        _track.put("3", money.text);
+      }
+    });
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +128,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
               decoration: InputDecoration(
                   hintText: "Paid to (name or place)",
                   hintStyle: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.bold),
+                      color: const Color.fromARGB(255, 235, 184, 19), fontWeight: FontWeight.bold),
                   border: InputBorder.none),
             ),
           ),

@@ -10,6 +10,7 @@ class ExpensePage1 extends StatefulWidget {
 
 class _ExpensePage1State extends State<ExpensePage1> {
   TextEditingController income = TextEditingController();
+  TextEditingController money=TextEditingController();
   final _track = Hive.box("myBox");
   int value = 0;
   List<dynamic> ls = [];
@@ -26,6 +27,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
       if (_track.get("key") != null) {
         value = int.parse(_track.get("key"));
         value = value + int.parse(income.text);
+        _track.put("key", value.toString());
       } else {
         _track.put("key", income.text);
       }
@@ -90,14 +92,16 @@ class _ExpensePage1State extends State<ExpensePage1> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "₹",
+                  Text("₹", style: TextStyle(fontSize: 50, color: Colors.yellow[100])),
+                  SizedBox(width: 15,),
+                 _track.get("3")==null? Text(
+                    "",
                     style: TextStyle(fontSize: 50, color: Colors.yellow[100]),
-                  ),
+                  ):Text(_track.get("3"), style: TextStyle(fontSize: 50, color: Colors.yellow[100]),),
                   SizedBox(
                     width: 20,
                   ),
-                  Text("Spent Money",
+                  Text("Expense",
                       style:
                           TextStyle(color: Colors.yellow[100], fontSize: 20)),
                 ],
@@ -108,8 +112,12 @@ class _ExpensePage1State extends State<ExpensePage1> {
                   SizedBox(
                     width: 10,
                   ),
+                  Text("₹", style: TextStyle(fontSize: 20, color: Colors.yellow[100])),
+                   SizedBox(
+                    width: 10,
+                  ),
                   _track.get("key") == null
-                      ? Text("₹",
+                      ? Text("",
                           style: TextStyle(
                               color: Colors.yellow[100], fontSize: 20))
                       : Text(_track.get("key"),
@@ -165,24 +173,58 @@ class _ExpensePage1State extends State<ExpensePage1> {
                       boxShadow: [
                         BoxShadow(blurRadius: 5, color: Colors.grey)
                       ]),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        ls[index]["food"],
-                        style: TextStyle(
-                            color: const Color.fromARGB(255, 235, 184, 19),
-                            fontSize: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            ls[index]["food"],
+                            style: TextStyle(
+                                color: const Color.fromARGB(255, 235, 184, 19),
+                                fontSize: 20),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            ls[index]["paid"],
+                            style: TextStyle(
+                                color: const Color.fromARGB(255, 235, 184, 19),
+                                fontSize: 15),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: 5,
+                      SizedBox(width: 45,),
+                      Column(
+                        children: [
+                          Text("Date",style: TextStyle(
+                                    color: const Color.fromARGB(255, 235, 184, 19),
+                                    fontSize: 15), ),
+                                    SizedBox(height: 5,),
+                          Text(ls[index]["date"], style: TextStyle(
+                                    color: const Color.fromARGB(255, 235, 184, 19),
+                                    fontSize: 15), ),
+                        ],
                       ),
-                      Text(
-                        ls[index]["paid"],
-                        style: TextStyle(
-                            color: const Color.fromARGB(255, 235, 184, 19),
-                            fontSize: 15),
-                      ),
+                      SizedBox(width: 45,),
+                                Column(
+                                  children: [
+                                    Text("Time", style: TextStyle(
+                                color: const Color.fromARGB(255, 235, 184, 19),
+                                fontSize: 15), ),
+                                    SizedBox(height: 5,),
+                                    Text(ls[index]["time"], style: TextStyle(
+                                color: const Color.fromARGB(255, 235, 184, 19),
+                                fontSize: 15), ),
+                                  ],
+                                ),
+                      SizedBox(width: 45,),
+                                Text("₹",style: TextStyle(fontSize: 20,color: const Color.fromARGB(255, 235, 184, 19),),),
+                                Text(ls[index]["money"], style: TextStyle(
+                                color: const Color.fromARGB(255, 235, 184, 19),
+                                fontSize: 20), ),
                     ],
                   ),
                 );
@@ -301,7 +343,9 @@ class _ExpensePage1State extends State<ExpensePage1> {
                   borderRadius: BorderRadius.circular(30),
                   color: const Color.fromARGB(255, 235, 184, 19)),
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, "track3");
+                  },
                   child: Text(
                     "STATEMENTS",
                     style: TextStyle(
