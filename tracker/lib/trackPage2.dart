@@ -96,7 +96,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(5),
                         color: const Color.fromARGB(255, 235, 184, 19),
                       ),
                       child: TextButton(
@@ -112,7 +112,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(5),
                         color: const Color.fromARGB(255, 235, 184, 19),
                       ),
                       child: TextButton(
@@ -246,7 +246,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
             height: 30,
           ),
                    Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
                       onTap: () {
@@ -257,13 +257,18 @@ class _ExpensePage2State extends State<ExpensePage2> {
                               _image!,
                               fit: BoxFit.cover,
                             )
-                          : Text(
-                              "Bill",
-                              style: TextStyle(
-                                  color:
-                                      const Color.fromARGB(255, 235, 184, 19),
-                                  fontWeight: FontWeight.bold),
-                            ))
+                          : Center(
+                            child: Column(
+                              children: [
+                  Text("BILL",style: TextStyle(color: const Color.fromARGB(255, 235, 184, 19)),),
+                  SizedBox(height: 10,),
+                                Icon(Icons.image,
+                                color: const Color.fromARGB(255, 235, 184, 19),
+                                size: 120,
+                                ),
+                              ],
+                            )
+                          ))
                 ],
                    ),
           SizedBox(

@@ -13,6 +13,9 @@ class _ExpensePage1State extends State<ExpensePage1> {
   TextEditingController money=TextEditingController();
   final _track = Hive.box("myBox");
   int value = 0;
+  double exp=0;
+  double inc=0;
+  double sum=0;
   List<dynamic> ls = [];
 
   @override
@@ -41,7 +44,18 @@ class _ExpensePage1State extends State<ExpensePage1> {
     } else {
       print(ls);
     }
+      balanceData();
   }
+void balanceData(){
+  if(_track.get("key")!=null ||_track.get("3")!=null){
+    exp=double.parse(_track.get("3"));
+    inc=double.parse(_track.get("key"));
+    sum=inc-exp;
+  }
+  else{
+    print("null");
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -90,29 +104,31 @@ class _ExpensePage1State extends State<ExpensePage1> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                   Text("Expense",
+                      style:
+                          TextStyle(color: Colors.yellow[100], fontSize: 20)),
+                           SizedBox(
+                    width: 20,
+                  ),
                   Text("₹", style: TextStyle(fontSize: 50, color: Colors.yellow[100])),
                   SizedBox(width: 15,),
                  _track.get("3")==null? Text(
                     "",
                     style: TextStyle(fontSize: 50, color: Colors.yellow[100]),
                   ):Text(_track.get("3"), style: TextStyle(fontSize: 50, color: Colors.yellow[100]),),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text("Expense",
-                      style:
-                          TextStyle(color: Colors.yellow[100], fontSize: 20)),
+                 
                 ],
               ),
               Row(
                 children: [
-                  Text("Income", style: TextStyle(color: Colors.yellow[100])),
+                  Text("Income", style:
+                          TextStyle(color: Colors.yellow[100], fontSize: 20)),
                   SizedBox(
                     width: 10,
                   ),
-                  Text("₹", style: TextStyle(fontSize: 20, color: Colors.yellow[100])),
+                  Text("₹", style: TextStyle(fontSize: 30, color: Colors.yellow[100])),
                    SizedBox(
                     width: 10,
                   ),
@@ -136,7 +152,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
                     width: 10,
                   ),
                   Text(
-                    "₹",
+                    "₹ ${sum}",
                     style: TextStyle(fontSize: 25, color: Colors.yellow[100]),
                   ),
                 ],
@@ -271,7 +287,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
                             height: 40,
                             padding: EdgeInsets.only(left: 20, right: 20),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(5),
                               color: const Color.fromARGB(255, 235, 184, 19),
                             ),
                             child: TextField(
@@ -294,7 +310,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(5),
                                     color:
                                         const Color.fromARGB(255, 235, 184, 19),
                                   ),
@@ -311,7 +327,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(5),
                                     color:
                                         const Color.fromARGB(255, 235, 184, 19),
                                   ),
