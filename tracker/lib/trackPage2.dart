@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ExpensePage2 extends StatefulWidget {
   const ExpensePage2({super.key});
@@ -13,40 +17,55 @@ class _ExpensePage2State extends State<ExpensePage2> {
   TextEditingController paid = TextEditingController();
   TextEditingController food = TextEditingController();
   List<dynamic> ls = [];
-  int value=0;
+  int value = 0;
   final _track = Hive.box("myBox");
-  DateTime date=DateTime.now();
+  DateTime date = DateTime.now();
+  final ImagePicker _picker = ImagePicker();
+  String? image;
+  File? _image;
 
-  void addData() {
+  void addData() async {
+    if (_image != null) {
+      final bytes = await _image!.readAsBytes();
+      final base64img = base64Encode(bytes);
+      image = base64img;
+    }
     if (_track.get("1") != null) {
       ls = _track.get("1");
 
       ls.add({
-        "money": money.text, 
-        "paid": paid.text, 
+        "money": money.text,
+        "paid": paid.text,
         "food": food.text,
-        "date":"${date.day.toString().padLeft(2,"0")}-${date.month.toString().padLeft(2,"0")}-${date.year.toString().padLeft(2,"0")}",
-        "time":"${date.hour.toString().padLeft(2,"0")}:${date.minute.toString().padLeft(2,"0")}"
-        });
+        "IMAGE": image,
+        "date":
+            "${date.day.toString().padLeft(2, "0")}-${date.month.toString().padLeft(2, "0")}-${date.year.toString().padLeft(2, "0")}",
+        "time":
+            "${date.hour.toString().padLeft(2, "0")}:${date.minute.toString().padLeft(2, "0")}"
+      });
       _track.put("1", ls);
     } else {
       ls = [
         {
-          "money": money.text, 
-          "paid": paid.text, 
+          "money": money.text,
+          "paid": paid.text,
           "food": food.text,
-          "date":"${date.day.toString().padLeft(2,"0")}-${date.month.toString().padLeft(2,"0")}-${date.year.toString().padLeft(2,"0")}",
-        "time":"${date.hour.toString().padLeft(2,"0")}:${date.minute.toString().padLeft(2,"0")}"
-          }
+          "IMAGE": image,
+          "date":
+              "${date.day.toString().padLeft(2, "0")}-${date.month.toString().padLeft(2, "0")}-${date.year.toString().padLeft(2, "0")}",
+          "time":
+              "${date.hour.toString().padLeft(2, "0")}:${date.minute.toString().padLeft(2, "0")}"
+        }
       ];
       print(_track.get("1"));
       _track.put("1", ls);
     }
     addMoney();
   }
-  void addMoney(){
+
+  void addMoney() {
     setState(() {
-       if (_track.get("3") != null) {
+      if (_track.get("3") != null) {
         value = int.parse(_track.get("3"));
         value = value + int.parse(money.text);
         _track.put("3", value.toString());
@@ -55,7 +74,75 @@ class _ExpensePage2State extends State<ExpensePage2> {
       }
     });
   }
-  
+
+  void pickImage() {
+    if (_image == null) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: const Color.fromARGB(255, 243, 239, 203),
+              title: Text(
+                "ADD BILL",
+                style:
+                    TextStyle(color: const Color.fromARGB(255, 235, 184, 19)),
+              ),
+              actions: [
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color.fromARGB(255, 235, 184, 19),
+                      ),
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "Cancel",
+                            style: TextStyle(
+                                color:
+                                    const Color.fromARGB(255, 243, 239, 203)),
+                          )),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color.fromARGB(255, 235, 184, 19),
+                      ),
+                      child: TextButton(
+                          onPressed: gallery,
+                          child: Text(
+                            "Gallery",
+                            style: TextStyle(
+                                color:
+                                    const Color.fromARGB(255, 243, 239, 203)),
+                          )),
+                    )
+                  ],
+                )
+              ],
+            );
+          });
+    }
+  }
+
+  void gallery() async {
+    final PickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (PickedFile != null) {
+        _image = File(PickedFile.path);
+        Navigator.pop(context);
+      } else {
+        print("null");
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +162,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
         children: [
           Center(
             child: Container(
-              margin: EdgeInsets.only(left: 50, top: 50),
+              margin: EdgeInsets.only(top: 50),
               width: 200,
               height: 40,
               decoration: BoxDecoration(
@@ -128,7 +215,8 @@ class _ExpensePage2State extends State<ExpensePage2> {
               decoration: InputDecoration(
                   hintText: "Paid to (name or place)",
                   hintStyle: TextStyle(
-                      color: const Color.fromARGB(255, 235, 184, 19), fontWeight: FontWeight.bold),
+                      color: const Color.fromARGB(255, 235, 184, 19),
+                      fontWeight: FontWeight.bold),
                   border: InputBorder.none),
             ),
           ),
@@ -147,7 +235,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
             child: TextField(
               controller: food,
               decoration: InputDecoration(
-                  hintText: "Food item",
+                  hintText: "Item",
                   hintStyle: TextStyle(
                       color: const Color.fromARGB(255, 235, 184, 19),
                       fontWeight: FontWeight.bold),
@@ -157,88 +245,27 @@ class _ExpensePage2State extends State<ExpensePage2> {
           SizedBox(
             height: 30,
           ),
-          Container(
-              margin: EdgeInsets.only(left: 50, right: 50),
-              width: MediaQuery.of(context).size.width,
-              height: 40,
-              padding: EdgeInsets.only(left: 20, right: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: const Color.fromARGB(255, 243, 239, 203),
-              ),
-              child: Center(
-                  child: Row(
+                   Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 243, 239, 203),
-                              title: Text(
-                                "ADD BILL",
-                                style: TextStyle(
-                                    color: const Color.fromARGB(
-                                        255, 235, 184, 19)),
-                              ),
-                              actions: [
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: const Color.fromARGB(
-                                            255, 235, 184, 19),
-                                      ),
-                                      child: TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text(
-                                            "Cancel",
-                                            style: TextStyle(
-                                                color: const Color.fromARGB(
-                                                    255, 243, 239, 203)),
-                                          )),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: const Color.fromARGB(
-                                            255, 235, 184, 19),
-                                      ),
-                                      child: TextButton(
-                                          onPressed: () {},
-                                          child: Text(
-                                            "Add",
-                                            style: TextStyle(
-                                                color: const Color.fromARGB(
-                                                    255, 243, 239, 203)),
-                                          )),
-                                    )
-                                  ],
-                                )
-                              ],
-                            );
-                          });
-                    },
-                    child: Text(
-                      "Bill",
-                      style: TextStyle(
-                          color: const Color.fromARGB(255, 235, 184, 19),
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                      onTap: () {
+                        pickImage();
+                      },
+                      child: _image != null
+                          ? Image.file(
+                              _image!,
+                              fit: BoxFit.cover,
+                            )
+                          : Text(
+                              "Bill",
+                              style: TextStyle(
+                                  color:
+                                      const Color.fromARGB(255, 235, 184, 19),
+                                  fontWeight: FontWeight.bold),
+                            ))
                 ],
-              ))),
+                   ),
           SizedBox(
             height: 50,
           ),
@@ -246,7 +273,7 @@ class _ExpensePage2State extends State<ExpensePage2> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                  margin: EdgeInsets.only(left: 50, right: 50),
+                  // margin: EdgeInsets.only(left: 50, right: 50),
                   width: 150,
                   height: 40,
                   decoration: BoxDecoration(

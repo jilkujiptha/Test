@@ -80,7 +80,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
         Container(
           margin: EdgeInsets.only(left: 70, right: 50, top: 20),
           padding: EdgeInsets.all(20),
-          width: 350,
+          width: MediaQuery.of(context).size.width,
           height: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
@@ -164,7 +164,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
                 return Container(
                   margin:
                       EdgeInsets.only(bottom: 10, top: 10, left: 50, right: 50),
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width,
                   height: 90,
                   decoration: BoxDecoration(
@@ -174,7 +174,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
                         BoxShadow(blurRadius: 5, color: Colors.grey)
                       ]),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -196,7 +196,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
                           ),
                         ],
                       ),
-                      SizedBox(width: 45,),
+                      SizedBox(width: 20,),
                       Column(
                         children: [
                           Text("Date",style: TextStyle(
@@ -208,7 +208,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
                                     fontSize: 15), ),
                         ],
                       ),
-                      SizedBox(width: 45,),
+                      SizedBox(width: 20,),
                                 Column(
                                   children: [
                                     Text("Time", style: TextStyle(
@@ -220,7 +220,7 @@ class _ExpensePage1State extends State<ExpensePage1> {
                                 fontSize: 15), ),
                                   ],
                                 ),
-                      SizedBox(width: 45,),
+                      SizedBox(width: 20,),
                                 Text("₹",style: TextStyle(fontSize: 20,color: const Color.fromARGB(255, 235, 184, 19),),),
                                 Text(ls[index]["money"], style: TextStyle(
                                 color: const Color.fromARGB(255, 235, 184, 19),

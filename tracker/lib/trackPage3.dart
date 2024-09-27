@@ -10,6 +10,8 @@ class ExpensePage3 extends StatefulWidget {
 class _ExpensePage3State extends State<ExpensePage3> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      
+    );
   }
 }
