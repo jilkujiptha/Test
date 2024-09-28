@@ -157,128 +157,146 @@ class _ExpensePage2State extends State<ExpensePage2> {
               fontWeight: FontWeight.bold),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Center(
-            child: Container(
-              margin: EdgeInsets.only(top: 50),
-              width: 200,
+      body: Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Container(
+                margin: EdgeInsets.only(top: 50),
+                width: 200,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color.fromARGB(255, 235, 184, 19),
+                ),
+                child: Center(
+                    child: Text(
+                  "EXPENSE",
+                  style: TextStyle(color: Colors.white),
+                )),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 50, right: 50),
+              width: MediaQuery.of(context).size.width,
               height: 40,
+              padding: EdgeInsets.only(left: 20, right: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: const Color.fromARGB(255, 235, 184, 19),
+                color: const Color.fromARGB(255, 243, 239, 203),
               ),
-              child: Center(
-                  child: Text(
-                "EXPENSE",
-                style: TextStyle(color: Colors.white),
-              )),
+              child: TextField(
+                controller: money,
+                decoration: InputDecoration(
+                    hintText: "Spend Money",
+                    hintStyle: TextStyle(
+                        color: const Color.fromARGB(255, 235, 184, 19),
+                        fontWeight: FontWeight.bold),
+                    border: InputBorder.none),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 50, right: 50),
-            width: MediaQuery.of(context).size.width,
-            height: 40,
-            padding: EdgeInsets.only(left: 20, right: 20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: const Color.fromARGB(255, 243, 239, 203),
+            SizedBox(
+              height: 30,
             ),
-            child: TextField(
-              controller: money,
-              decoration: InputDecoration(
-                  hintText: "Spend Money",
-                  hintStyle: TextStyle(
-                      color: const Color.fromARGB(255, 235, 184, 19),
-                      fontWeight: FontWeight.bold),
-                  border: InputBorder.none),
+            Container(
+              margin: EdgeInsets.only(left: 50, right: 50),
+              width: MediaQuery.of(context).size.width,
+              height: 40,
+              padding: EdgeInsets.only(left: 20, right: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color.fromARGB(255, 243, 239, 203),
+              ),
+              child: TextField(
+                controller: paid,
+                decoration: InputDecoration(
+                    hintText: "Paid to (name or place)",
+                    hintStyle: TextStyle(
+                        color: const Color.fromARGB(255, 235, 184, 19),
+                        fontWeight: FontWeight.bold),
+                    border: InputBorder.none),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 50, right: 50),
-            width: MediaQuery.of(context).size.width,
-            height: 40,
-            padding: EdgeInsets.only(left: 20, right: 20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: const Color.fromARGB(255, 243, 239, 203),
+            SizedBox(
+              height: 30,
             ),
-            child: TextField(
-              controller: paid,
-              decoration: InputDecoration(
-                  hintText: "Paid to (name or place)",
-                  hintStyle: TextStyle(
-                      color: const Color.fromARGB(255, 235, 184, 19),
-                      fontWeight: FontWeight.bold),
-                  border: InputBorder.none),
+            Container(
+              margin: EdgeInsets.only(left: 50, right: 50),
+              width: MediaQuery.of(context).size.width,
+              height: 40,
+              padding: EdgeInsets.only(left: 20, right: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color.fromARGB(255, 243, 239, 203),
+              ),
+              child: TextField(
+                controller: food,
+                decoration: InputDecoration(
+                    hintText: "Item",
+                    hintStyle: TextStyle(
+                        color: const Color.fromARGB(255, 235, 184, 19),
+                        fontWeight: FontWeight.bold),
+                    border: InputBorder.none),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 50, right: 50),
-            width: MediaQuery.of(context).size.width,
-            height: 40,
-            padding: EdgeInsets.only(left: 20, right: 20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: const Color.fromARGB(255, 243, 239, 203),
+            SizedBox(
+              height: 30,
             ),
-            child: TextField(
-              controller: food,
-              decoration: InputDecoration(
-                  hintText: "Item",
-                  hintStyle: TextStyle(
-                      color: const Color.fromARGB(255, 235, 184, 19),
-                      fontWeight: FontWeight.bold),
-                  border: InputBorder.none),
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-                   Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        pickImage();
-                      },
-                      child: _image != null
-                          ? Image.file(
-                              _image!,
-                              fit: BoxFit.cover,
-                            )
-                          : Center(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      pickImage();
+                    },
+                    child: _image != null
+                        ? Image.file(
+                            _image!,
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          )
+                        : Center(
                             child: Column(
-                              children: [
-                  Text("BILL",style: TextStyle(color: const Color.fromARGB(255, 235, 184, 19)),),
-                  SizedBox(height: 10,),
-                                Icon(Icons.image,
-                                color: const Color.fromARGB(255, 235, 184, 19),
-                                size: 120,
-                                ),
-                              ],
-                            )
-                          ))
-                ],
-                   ),
-          SizedBox(
-            height: 50,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                  // margin: EdgeInsets.only(left: 50, right: 50),
+                            children: [
+                              Text(
+                                "BILL",
+                                style: TextStyle(
+                                    color:
+                                        const Color.fromARGB(255, 235, 184, 19),
+                                    fontSize: 30),
+                              ),
+                            ],
+                          )))
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                    // margin: EdgeInsets.only(left: 50, right: 50),
+                    width: 150,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(255, 235, 184, 19),
+                    ),
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          "CANCEL",
+                          style: TextStyle(color: Colors.white),
+                        ))),
+                Container(
                   width: 150,
                   height: 40,
                   decoration: BoxDecoration(
@@ -287,32 +305,18 @@ class _ExpensePage2State extends State<ExpensePage2> {
                   ),
                   child: TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        addData();
+                        Navigator.pushNamed(context, "track1");
                       },
                       child: Text(
-                        "CANCEL",
+                        "SAVE",
                         style: TextStyle(color: Colors.white),
-                      ))),
-              Container(
-                width: 150,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(255, 235, 184, 19),
-                ),
-                child: TextButton(
-                    onPressed: () {
-                      addData();
-                      Navigator.pushNamed(context, "track1");
-                    },
-                    child: Text(
-                      "SAVE",
-                      style: TextStyle(color: Colors.white),
-                    )),
-              )
-            ],
-          )
-        ],
+                      )),
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

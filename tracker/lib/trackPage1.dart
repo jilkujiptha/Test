@@ -10,12 +10,12 @@ class ExpensePage1 extends StatefulWidget {
 
 class _ExpensePage1State extends State<ExpensePage1> {
   TextEditingController income = TextEditingController();
-  TextEditingController money=TextEditingController();
+  TextEditingController money = TextEditingController();
   final _track = Hive.box("myBox");
   int value = 0;
-  double exp=0;
-  double inc=0;
-  double sum=0;
+  double exp = 0;
+  double inc = 0;
+  double sum = 0;
   List<dynamic> ls = [];
 
   @override
@@ -44,18 +44,22 @@ class _ExpensePage1State extends State<ExpensePage1> {
     } else {
       print(ls);
     }
+    if (_track.get("3") != null) {
       balanceData();
+    } else {
+      null;
+    }
   }
-void balanceData(){
-  if(_track.get("key")!=null ||_track.get("3")!=null){
-    exp=double.parse(_track.get("3"));
-    inc=double.parse(_track.get("key"));
-    sum=inc-exp;
+
+  void balanceData() {
+    if (_track.get("key") != null || _track.get("3") != null) {
+      exp = double.parse(_track.get("3"));
+      inc = double.parse(_track.get("key"));
+      sum = inc - exp;
+    } else {
+      print("null");
+    }
   }
-  else{
-    print("null");
-  }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -106,30 +110,43 @@ void balanceData(){
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                   Text("Expense",
+                  Text("Expense",
                       style:
                           TextStyle(color: Colors.yellow[100], fontSize: 20)),
-                           SizedBox(
+                  SizedBox(
                     width: 20,
                   ),
-                  Text("₹", style: TextStyle(fontSize: 50, color: Colors.yellow[100])),
-                  SizedBox(width: 15,),
-                 _track.get("3")==null? Text(
-                    "",
-                    style: TextStyle(fontSize: 50, color: Colors.yellow[100]),
-                  ):Text(_track.get("3"), style: TextStyle(fontSize: 50, color: Colors.yellow[100]),),
-                 
+                  Text("₹",
+                      style:
+                          TextStyle(fontSize: 50, color: Colors.yellow[100])),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  _track.get("3") == null
+                      ? Text(
+                          "",
+                          style: TextStyle(
+                              fontSize: 50, color: Colors.yellow[100]),
+                        )
+                      : Text(
+                          _track.get("3"),
+                          style: TextStyle(
+                              fontSize: 50, color: Colors.yellow[100]),
+                        ),
                 ],
               ),
               Row(
                 children: [
-                  Text("Income", style:
+                  Text("Income",
+                      style:
                           TextStyle(color: Colors.yellow[100], fontSize: 20)),
                   SizedBox(
                     width: 10,
                   ),
-                  Text("₹", style: TextStyle(fontSize: 30, color: Colors.yellow[100])),
-                   SizedBox(
+                  Text("₹",
+                      style:
+                          TextStyle(fontSize: 30, color: Colors.yellow[100])),
+                  SizedBox(
                     width: 10,
                   ),
                   _track.get("key") == null
@@ -212,35 +229,66 @@ void balanceData(){
                           ),
                         ],
                       ),
-                      SizedBox(width: 20,),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Column(
                         children: [
-                          Text("Date",style: TextStyle(
-                                    color: const Color.fromARGB(255, 235, 184, 19),
-                                    fontSize: 15), ),
-                                    SizedBox(height: 5,),
-                          Text(ls[index]["date"], style: TextStyle(
-                                    color: const Color.fromARGB(255, 235, 184, 19),
-                                    fontSize: 15), ),
+                          Text(
+                            "Date",
+                            style: TextStyle(
+                                color: const Color.fromARGB(255, 235, 184, 19),
+                                fontSize: 15),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            ls[index]["date"],
+                            style: TextStyle(
+                                color: const Color.fromARGB(255, 235, 184, 19),
+                                fontSize: 15),
+                          ),
                         ],
                       ),
-                      SizedBox(width: 20,),
-                                Column(
-                                  children: [
-                                    Text("Time", style: TextStyle(
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "Time",
+                            style: TextStyle(
                                 color: const Color.fromARGB(255, 235, 184, 19),
-                                fontSize: 15), ),
-                                    SizedBox(height: 5,),
-                                    Text(ls[index]["time"], style: TextStyle(
+                                fontSize: 15),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            ls[index]["time"],
+                            style: TextStyle(
                                 color: const Color.fromARGB(255, 235, 184, 19),
-                                fontSize: 15), ),
-                                  ],
-                                ),
-                      SizedBox(width: 20,),
-                                Text("₹",style: TextStyle(fontSize: 20,color: const Color.fromARGB(255, 235, 184, 19),),),
-                                Text(ls[index]["money"], style: TextStyle(
-                                color: const Color.fromARGB(255, 235, 184, 19),
-                                fontSize: 20), ),
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "₹",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: const Color.fromARGB(255, 235, 184, 19),
+                        ),
+                      ),
+                      Text(
+                        ls[index]["money"],
+                        style: TextStyle(
+                            color: const Color.fromARGB(255, 235, 184, 19),
+                            fontSize: 20),
+                      ),
                     ],
                   ),
                 );
